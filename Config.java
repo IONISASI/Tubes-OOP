@@ -67,6 +67,20 @@ public class Config{
         scanMonster.close();
 
         //config effectivity
+        File fileEffectivity = new File("src\\effectivity.txt");
+        Scanner scanEff = new Scanner(fileEffectivity);
+
+        while(scanEff.hasNextLine()){
+            String line = scanEff.nextLine();
+            String[] vals = line.split(";");
+            ElementType source = ElementType.valueOf(vals[0]);
+            ElementType target = ElementType.valueOf(vals[1]);
+            double eff = Double.parseDouble(vals[2]);
+
+            Effectivity effectivity = new Effectivity(source, target, eff);
+            effList.add(effectivity);
+        }
+        scanEff.close();
 
         //config moves
     }
