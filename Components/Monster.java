@@ -4,6 +4,7 @@ public class Monster {
     private List<ElementType> elementTypesList = new ArrayList<ElementType>();
     private Stats baseStats;
     private List<Move> movesList = new ArrayList<Move>();
+    private String status;
 
     public int getId() {
         return id;
