@@ -1,29 +1,31 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Monster {
     private int id;
     private String nama;
     private List<ElementType> elementTypesList = new ArrayList<ElementType>();
     private Stats baseStats;
     private List<Move> movesList = new ArrayList<Move>();
-    private String status;
+
+    //constructor
+    public Monster(int id, String nama, List<ElementType> elementTypesList, Stats baseStats, List<Move> movesList) {
+        this.id = id;
+        this.nama = nama;
+        this.elementTypesList = elementTypesList;
+        this.baseStats = baseStats;
+        this.movesList = movesList;
+    }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNama() {
         return nama;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
     public void addElementType(ElementType elementType) {
-        // Tambahkan citizenship ke list, gunakan metode add dari java.util.List
         elementTypeList.add(elementType);
     }
 
