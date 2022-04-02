@@ -26,7 +26,7 @@ public class Monster {
     }
 
     public void addElementType(ElementType elementType) {
-        elementTypeList.add(elementType);
+        elementTypesList.add(elementType);
     }
 
     public List<ElementType> getElementTypesList() {
