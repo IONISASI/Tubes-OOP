@@ -31,17 +31,20 @@ public class Damage extends Monster implements Statcon{
         }
     }
     public static void calculateDamage(){
+        double min = 0.85;  
+        double max = 1;  
+        double a = Math.random()*(max-min+1)+min; 
         if(Move.effect().contains("BURN") && Move.moveType().contains("NORMAL")){
-            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(Stats.getAtt()/Stats.getDef())+2)*Math.random() * 0.15 * Effectivity.getEffectivity() * 0.5));
+            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(Stats.getAtt()/Stats.getDef())+2)* a * Effectivity.getEffectivity() * 0.5));
         }
         else if(Move.effect().contains("BURN") && Move.moveType().contains("SPECIAL")){
-            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(Stats.getspatt()/Stats.getspdef())+2)*Math.random() * 0.15 * Effectivity.getEffectivity() * 0.5));
+            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(Stats.getspatt()/Stats.getspdef())+2)* a * Effectivity.getEffectivity() * 0.5));
         }
         else if(Move.moveType().contains("SPECIAL")){
-            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(Stats.getspatt()/Stats.getspdef())+2)*Math.random() * 0.15 * Effectivity.getEffectivity() * 1));
+            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(Stats.getspatt()/Stats.getspdef())+2)* a * Effectivity.getEffectivity() * 1));
         }
         else if(Move.moveType().contains("NORMAL")){
-            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(Stats.getAtt()/Stats.getDef())+2)*Math.random() * 0.15 * Effectivity.getEffectivity() * 1));
+            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(Stats.getAtt()/Stats.getDef())+2)* a * Effectivity.getEffectivity() * 1));
         }
     }
     public static void aftercalculateDamage(){
