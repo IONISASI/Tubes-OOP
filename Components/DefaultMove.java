@@ -1,5 +1,3 @@
-package Components;
-
 public class DefaultMove extends Move{
     private int basePower;
     //constructor

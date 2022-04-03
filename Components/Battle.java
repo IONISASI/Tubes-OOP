@@ -1,30 +1,49 @@
-import java.util.Scanner;
-import java.util.Random; 
+import java.util.*; 
 
-public class Battle extends Effectivity implements Statcon{
+public class Battle extends Player{
     private static Player player1;
     private static Player player2;
-    private static double effectivity;
-    private int jumlah1=3;
-    private int jumlah2=3;
-    public Battle(Player player1, Player player2){
-        super(player1, player2, effectivity);
-    }
-    public void burn(double HP, double att){
-        HP = HP*1/8; att = att*1/2;
-    }
-    public void poison(double HP){
-        HP = 1/16*HP;
-    }
-    public void sleep(int x){
-        x = (int) (Math.random() * 7) + 1;
-    }
-    public void paralyze(double speed, boolean y){
-        speed = speed*1/2;
-        Random rand = new Random();
-        y = rand.nextDouble() < 0.25;
+    private static int turn;
+    private static int nextturn;
+    public Battle(int playerId, String playerName, List<Monster> monsterList){
+        super(playerId, playerName, monsterList);
     }
     public static void turn(){
+        turn = new Random().nextInt(2);
+        if(turn==0){
+            System.out.println("Giliran "+ player1.getPlayerName());
+            turnprint();
+        }
+        else{
+            System.out.println("Giliran "+ player2.getPlayerName());
+            turnprint();
+        }
+    }
+    public static void nextturn(){
+        if(turn==0){
+            nextturn = turn+1;
+        }
+        else{
+            nextturn = turn-1;
+        }
+    }
+    public static int getturn(){
+        return turn;
+    }
+    public static int getnextturn(){
+        return nextturn;
+    } 
+    public static void skipturn(int a){
+        for(int i=0;i<a;i++){
+            if(nextturn==0){
+                turn = 1;
+            }
+            else{
+                turn = 0;
+            }
+        }
+    }
+    public static void turnprint(){
         System.out.println("-------- TURN --------");
         System.out.println("Petunjuk: mohon tulis angkanya saja");
         System.out.println("(1) Move");
@@ -47,51 +66,14 @@ public class Battle extends Effectivity implements Statcon{
     public static void switchmonster(){
 
     }
-    public static double calculateDamage(double power, Player player1, Player player2, double effectivity){
-        if(player1.turn() && player1.burn()){
-            return ((Double) java.lang.Math.floor((power*(player1.att/player2.def)+2)*Math.random() * 0.15 * effectivity * 0.5));
-        }
-        else if(player1.turn()){
-            return ((Double) java.lang.Math.floor((power*(player1.att/player2.def)+2)*Math.random() * 0.15 * effectivity * 1));
-        }
-        else if(player2.turn() && player2.burn()){
-            return ((Double) java.lang.Math.floor((power*(player2.att/player1.def)+2)*Math.random() * 0.15 * effectivity * 0.5));
+    public static void gameover(){
+        if(player1.getMonsterList().isEmpty()){
+            System.out.println("Game telah berakhir, pemenangnya adalah "+ player1.getPlayerName());
+            //exitgame();
         }
         else{
-            return ((Double) java.lang.Math.floor((power*(player1.att/player2.def)+2)*Math.random() * 0.15 * effectivity * 1));
+            System.out.println("Game telah berakhir, pemenangnya adalah "+ player2.getPlayerName());
+            //exitgame();
         }
     }
-    public static double aftercalculateDamage(Player player1, Player player2, double HP){
-        if(player1.burn()){
-            return (Double) java.lang.Math.floor(player1.burn(HP));
-        }
-        else if(player1.poison()){
-            return (Double) java.lang.Math.floor(player1.poison(HP));
-        }
-        else if(player2.burn()){
-            return (Double) java.lang.Math.floor(player2.burn(HP));
-        }
-        else {
-            return (Double) java.lang.Math.floor(player2.poison(HP));
-        }
-    }
-    public static void aftereffect(Player player1, Player player2, double HP){
-        if(player1.HP = 0){
-            player1.switchmonster();
-        }
-        else{
-            player2.switchmonster();
-        }
-    }
-    public static void gameover(int jumlah1, int jumlah2){
-        if(jumlah1 = 0){
-            System.out.println("Game telah berakhir pemenangnya adalah Player 2");
-            exit();
-        }
-        else if(jumlah2 = 0){
-            System.out.println("Game telah berakhir pemenangnya adalah Player 1");
-            exit();
-        }
-    }
-
 }

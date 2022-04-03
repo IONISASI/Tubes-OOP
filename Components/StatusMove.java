@@ -1,5 +1,3 @@
-package Components;
-
 public class StatusMove extends Move{
     String statcon;
     double HP;

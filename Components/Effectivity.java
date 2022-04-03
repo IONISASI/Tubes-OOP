@@ -1,5 +1,3 @@
-package Components;
-
 public class Effectivity {
     private ElementType source;
     private ElementType target;

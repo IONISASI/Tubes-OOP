@@ -7,14 +7,16 @@ public class Monster {
     private List<ElementType> elementTypesList = new ArrayList<ElementType>();
     private Stats baseStats;
     private List<Move> movesList = new ArrayList<Move>();
+    private double HP;
 
     //constructor
-    public Monster(int id, String nama, List<ElementType> elementTypesList, Stats baseStats, List<Move> movesList) {
+    public Monster(int id, String nama, List<ElementType> elementTypesList, Stats baseStats, List<Move> movesList, double HP) {
         this.id = id;
         this.nama = nama;
         this.elementTypesList = elementTypesList;
         this.baseStats = baseStats;
         this.movesList = movesList;
+        this.HP = HP;
     }
 
     public int getId() {
@@ -33,7 +35,7 @@ public class Monster {
         return this.elementTypesList;
     }
 
-    public String getBaseStats() {
+    public Stats getBaseStats() {
         return baseStats;
     }
 
@@ -47,5 +49,8 @@ public class Monster {
 
     public List<Move> getMovesList() {
         return this.movesList;
+    }
+    public double getHP(){
+        return HP;
     }
 }

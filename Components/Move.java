@@ -1,5 +1,3 @@
-package Components;
-
 public class Move {
     int id;
     String name;
