@@ -8,14 +8,16 @@ public class Damage extends Monster implements Statcon{
     public void burn(double HP, double att){
         HP = HP*1/8; att = att*1/2;
     }
-    public static void burnHP(double HP){
+    public static double burnHP(double HP){
         HP = HP*1/8;
-    }
-    public static boolean isburn(){
-        if()
+        return HP;
     }
     public void poison(double HP){
         HP = 1/16*HP;
+    }
+    public static double poisoned(double HP){
+        HP = 1/16*HP;
+        return HP;
     }
     public void sleep(int x){
         x = (int) (Math.random() * 7) + 1;
@@ -28,40 +30,37 @@ public class Damage extends Monster implements Statcon{
             Battle.skipturn(1);
         }
     }
-    public static double calculateDamage(){
-        if(monster1.getbasestats()){
-            return ((Double) java.lang.Math.floor((NormalMove.getBasePower()*(monster1.att/monster2.def)+2)*Math.random() * 0.15 * effectivity * 0.5));
+    public static void calculateDamage(){
+        if(Move.effect().contains("BURN") && Move.moveType().contains("NORMAL")){
+            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(Stats.getAtt()/Stats.getDef())+2)*Math.random() * 0.15 * Effectivity.getEffectivity() * 0.5));
         }
-        else if(Battle.getturn()==0){
-            return ((Double) java.lang.Math.floor((power*(monster1.att/monster2.def)+2)*Math.random() * 0.15 * effectivity * 1));
+        else if(Move.effect().contains("BURN") && Move.moveType().contains("SPECIAL")){
+            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(Stats.getspatt()/Stats.getspdef())+2)*Math.random() * 0.15 * Effectivity.getEffectivity() * 0.5));
         }
-        else if(Battle.getturn()==1 && monster2.burn()){
-            return ((Double) java.lang.Math.floor((power*(monster2.att/monster1.def)+2)*Math.random() * 0.15 * effectivity * 0.5));
+        else if(Move.moveType().contains("SPECIAL")){
+            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(Stats.getspatt()/Stats.getspdef())+2)*Math.random() * 0.15 * Effectivity.getEffectivity() * 1));
         }
-        else{
-            return ((Double) java.lang.Math.floor((power*(monster1.att/monster2.def)+2)*Math.random() * 0.15 * effectivity * 1));
+        else if(Move.moveType().contains("NORMAL")){
+            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(Stats.getAtt()/Stats.getDef())+2)*Math.random() * 0.15 * Effectivity.getEffectivity() * 1));
         }
     }
-    public static double aftercalculateDamage(double HP){
-        if(monster1.burn()){
-            return (Double) java.lang.Math.floor(monster1.burn(HP));
+    public static void aftercalculateDamage(){
+        if(Move.effect().contains("BURN") && Move.target().contains("OWN")){
+            System.out.println(java.lang.Math.floor(burnHP(monster1.getHP())));
         }
-        else if(monster1.poison()){
-            return (Double) java.lang.Math.floor(monster1.poison(HP));
+        else if(Move.effect().contains("POISON")&& Move.target().contains("OWN")){
+            System.out.println(java.lang.Math.floor(poisoned(monster1.getHP())));
         }
-        else if(monster2.burn()){
-            return (Double) java.lang.Math.floor(monster2.burn(HP));
+        else if(Move.effect().contains("BURN") && Move.target().contains("ENEMY")){
+            System.out.println(java.lang.Math.floor(burnHP(monster2.getHP())));
         }
-        else {
-            return (Double) java.lang.Math.floor(monster2.poison(HP));
+        else if(Move.effect().contains("POISON") && Move.target().contains("ENEMY")){
+            System.out.println(java.lang.Math.floor(poisoned(monster2.getHP())));
         }
     }
     public static void aftereffect(){
-        if(monster1.getHP()==0){
-            monster1.switchmonster();
-        }
-        else{
-            monster2.switchmonster();
+        if(monster1.getHP()<=0 || monster2.getHP()<=0){
+            Battle.switchmonster();
         }
     }
 }

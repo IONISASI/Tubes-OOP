@@ -1,12 +1,11 @@
 public class Effectivity {
     private ElementType source;
     private ElementType target;
-    private double effectivity;
+    private static double effectivity;
 
     public Effectivity(ElementType source, ElementType target, double effectivity){
         this.source = source;
         this.target = target;
-        this.effectivity = effectivity;
     }
 
     public ElementType getSource(){
@@ -17,7 +16,7 @@ public class Effectivity {
         return this.target;
     }
 
-    public double getEffectivity(){
-        return this.effectivity;
+    public static double getEffectivity(){
+        return effectivity;
     }
 }

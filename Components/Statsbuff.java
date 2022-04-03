@@ -14,7 +14,7 @@ public class Statsbuff {
       this.att=someAtt;
     }
     if (someDef > MAX || someDef < MIN) {
-      throw new StatsbuffException("Deffense", someDef);
+      throw new StatsbuffException("Defense", someDef);
     } else {
       this.def=someDef;
     }
@@ -24,7 +24,7 @@ public class Statsbuff {
       this.spatt=someSpatt;
     }
     if (someSpdef > MAX || someSpdef < MIN) {
-      throw new StatsbuffException("Special Deffense", someSpdef);
+      throw new StatsbuffException("Special Defense", someSpdef);
     } else {
       this.spdef=someSpdef;
     }
@@ -60,7 +60,7 @@ public class Statsbuff {
   }
   public void setDef(int someDef) throws StatsbuffException {
     if (someDef > MAX || someDef < MIN) {
-      throw new StatsbuffException("Deffense", someDef);
+      throw new StatsbuffException("Defense", someDef);
     } else {
       this.def=someDef;
     }
@@ -74,7 +74,7 @@ public class Statsbuff {
   }
   public void setSpdef(int someSpdef) throws StatsbuffException {
     if (someSpdef > MAX || someSpdef < MIN) {
-      throw new StatsbuffException("Special Deffense", someSpdef);
+      throw new StatsbuffException("Special Defense", someSpdef);
     } else {
       this.spdef=someSpdef;
     }

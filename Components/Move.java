@@ -1,10 +1,13 @@
 public class Move {
     int id;
+    private static String moveType;
     String name;
     ElementType elementType;
     Integer accuracy;
     Integer priority;
     Integer ammunition;
+    private static String target;
+    private static String effect;
 
     // constructor
     public Move(int id, String name, ElementType elementType, Integer accuracy, Integer priority, Integer ammunition){
@@ -20,6 +23,9 @@ public class Move {
     public int getId(){
         return this.id;
     }
+    public static String moveType(){
+        return moveType;
+    }
     public String getName(){
         return this.name;
     }
@@ -34,5 +40,11 @@ public class Move {
     }
     public Integer getAmmunition(){
         return this.ammunition;
+    }
+    public static String target(){
+        return target;
+    }
+    public static String effect(){
+        return effect;
     }
 }
