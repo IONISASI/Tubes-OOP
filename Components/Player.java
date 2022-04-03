@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Player {
     private int playerId;
@@ -26,5 +27,9 @@ public class Player {
 
     public List<Monster> getMonsterList() {
         return this.monsterList;
+    }
+
+    public void randomMonster(){
+        Collections.shuffle(monsterList);
     }
 }
