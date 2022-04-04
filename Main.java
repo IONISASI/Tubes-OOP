@@ -1,4 +1,6 @@
 import java.lang.System;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -31,11 +33,11 @@ public class Main {
                 jumlahPemain = input.nextInt();
             }
 
-            List<String> playerNameList = new ArrayList<String>(jumlahPemain);
+            List<Player> playerNameList = new ArrayList<Player>(jumlahPemain);
             for (int i=0; i<jumlahPemain;i++){
                 System.out.println("Nama pemain ke " + i + ": ");
                 String namaPemain = input.next();
-                playerNameList.add(new Player(namaPemain));
+                playerNameList.add(new Player(i, namaPemain));
             }
             System.out.println();
 

@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -6,6 +7,11 @@ public class Player {
     private int playerId;
     private String playerName;
     private List<Monster> monsterList = new ArrayList<Monster>();
+
+    public Player(int playerId, String playerName){
+        this.playerId = playerId;
+        this.playerName = playerName;
+    }
 
     public Player(int playerId, String playerName, List<Monster> monsterList){
         this.playerId = playerId;
