@@ -35,7 +35,7 @@ public class Damage implements Statcon{
     public static void calculateDamage(){
         double min = 0.85;  
         double max = 1;  
-        double a = Math.random()*(max-min+1)+min; 
+        double a = Math.random()*(max-min)+min; 
         if(Move.effect().contains("BURN") && Move.moveType().contains("NORMAL") && Move.target().contains("OWN")){
             System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(monster2.getAtt()/monster1.getDef())+2)* a * Effectivity.getEffectivity() * 0.5));
         }
