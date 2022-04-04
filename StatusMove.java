@@ -1,12 +1,26 @@
 public class StatusMove extends Move{
+    String target;
     String statcon;
-    double HP;
+    Stats stats;
 
-    public StatusMove(int id, String name, ElementType elementType, Integer accuracy, Integer priority, Integer ammunition, String statcon, double HP){
+    //kayanya gini sih
+
+    public StatusMove(int id, String name, ElementType elementType, Integer accuracy, Integer priority, Integer ammunition, String target, String statcon, Stats stats){
         super(id, name, elementType, accuracy, priority, ammunition);
+        this.target = target;
         this.statcon = statcon;
-        this.HP = HP;
+        this.stats = stats;
     }
 
-    //ini masih bingung
+    public String getTarget(){
+        return this.target;
+    }
+
+    public String getStatcon(){
+        return this.statcon;
+    }
+
+    public Stats getStats(){
+        return this.stats;
+    }
 }
