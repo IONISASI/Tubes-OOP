@@ -34,8 +34,8 @@ public class Main {
             }
 
             List<Player> playerNameList = new ArrayList<Player>(jumlahPemain);
-            for (int i=0; i<jumlahPemain;i++){
-                System.out.println("Nama pemain ke " + i + ": ");
+            for (int i=1; i<jumlahPemain+1;i++){
+                System.out.println("Nama pemain ke "+ i + ":");
                 String namaPemain = input.next();
                 playerNameList.add(new Player(i, namaPemain));
             }
