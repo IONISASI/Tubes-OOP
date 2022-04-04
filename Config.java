@@ -123,7 +123,7 @@ public class Config{
                 }
             }
             
-            Monster mon = new Monster(id, namaMon, elementTypes, baseStats, moves);
+            Monster mon = new Monster(id, namaMon, elementTypes, hp, att, def, spatt, spdef, speed, moves);
             monsterList.add(mon);
                 
         }
@@ -144,8 +144,6 @@ public class Config{
             effList.add(effectivity);
         }
         scanEff.close();
-
-        
     }
 }
 
