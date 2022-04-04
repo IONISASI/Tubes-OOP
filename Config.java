@@ -1,4 +1,3 @@
-import Components.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -47,7 +46,6 @@ public class Config{
                 double spatt = Double.parseDouble(valsbs[3]);
                 double spdef = Double.parseDouble(valsbs[4]);
                 double speed = Double.parseDouble(valsbs[5]);
-            Stats baseStats = new Stats(hp, att, def, spatt, spdef, speed);
             String move = vals[4];
             String[] valsmove = move.split(",");
             List<Move> moves = new ArrayList<Move>();
@@ -60,7 +58,7 @@ public class Config{
                 }
             }
             
-            Monster mon = new Monster(id, namaMon, elementTypes, baseStats, moves);
+            Monster mon = new Monster(id, namaMon, elementTypes, hp, att, def, spatt, spdef, speed, moves);
             monsterList.add(mon);
                 
         }
@@ -78,7 +76,7 @@ public class Config{
             double eff = Double.parseDouble(vals[2]);
 
             Effectivity effectivity = new Effectivity(source, target, eff);
-            effList.add(effectivity);
+            // effList.add(effectivity);
         }
         scanEff.close();
 

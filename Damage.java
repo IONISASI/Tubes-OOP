@@ -1,10 +1,12 @@
-import java.util.*; 
-public class Damage extends Monster implements Statcon{
+import java.util.*;
+
+public class Damage implements Statcon{
     private static Monster monster1;
     private static Monster monster2;
-    public Damage(int id, String nama, List<ElementType> elementTypesList, Stats baseStats, List<Move> movesList, double HP){
-        super(id, nama, elementTypesList, baseStats, movesList, HP);
-    }
+    // public Damage(int id, String nama, List<ElementType> elementTypesList, Stats baseStats, List<Move> movesList, double HP){
+    //     super(id, nama, elementTypesList, baseStats, movesList, HP);
+    // }
+    
     public void burn(double HP, double att){
         HP = HP*1/8; att = att*1/2;
     }

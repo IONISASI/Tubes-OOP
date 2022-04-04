@@ -5,6 +5,15 @@
     private static double spatt;
     private static double spdef;
     private static double speed;
+
+    public Stats (double someHP, double someAtt, double someDef, double someSpatt, double someSpdef, double someSpeed) {
+        this.HP = someHP;
+        this.att = someAtt;
+        this.def = someDef;
+        this.spatt = someSpatt;
+        this.spdef = someSpdef;
+        this.speed = someSpeed;
+    }
     
     public static double getHP(){
         double d;
