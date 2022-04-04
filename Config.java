@@ -1,12 +1,10 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.io.*;
 
-
 public class Config{
-    static List<Move> moveList = new ArrayList<Move>();
     static List<Monster> monsterList = new ArrayList<Monster>();
+    static List<Effectivity> effList = new ArrayList<Effectivity>();
+    static List<Move> moveList = new ArrayList<Move>();
     //ntar tambah list yg perlu di cofig
     
     //untuk ngambil Move dari id nya
@@ -19,9 +17,75 @@ public class Config{
         return null;
     }
 
+    //untuk ngetes:D jgn lupa nama file nya
+    public static void main(String[] args) throws IOException{
+        new Config();
+        for (Monster mon : monsterList){
+            System.out.println(mon.getNama());
+            System.out.println(mon.getElementTypesList());
+        }
+        for (Effectivity eff : effList){
+            System.out.println(eff.getTarget());
+        }
+        for (Move m : moveList){
+            System.out.println(m.getName());
+        }
+    }
+
     // dalem sini harus ada config Monster, element effectivity, sama Move
     // harusnya mirip2 ky gini untuk config lainnya. yg mo nyoba bikin sabi
     public Config() throws IOException{
+        //config moves
+        File fileMove = new File("move.txt");
+        Scanner scanMove = new Scanner(fileMove);
+
+        while(scanMove.hasNextLine()){
+            String line = scanMove.nextLine();
+            String[] vals = line.split(";");
+            if(vals[1].equals("NORMAL")){
+                Integer id = Integer.parseInt(vals[0]);
+                String name = vals[2];
+                ElementType et = ElementType.valueOf(vals[3]);
+                Integer acc = Integer.parseInt(vals[4]);
+                Integer pri = Integer.parseInt(vals[5]);
+                Integer amm = Integer.parseInt(vals[6]);
+                Integer bp = Integer.parseInt(vals[8]);
+                NormalMove m = new NormalMove(id, name, et, acc, pri, amm, bp);
+                moveList.add(m);
+            }else if(vals[1].equals("SPECIAL")){
+                Integer id = Integer.parseInt(vals[0]);
+                String name = vals[2];
+                ElementType et = ElementType.valueOf(vals[3]);
+                Integer acc = Integer.parseInt(vals[4]);
+                Integer pri = Integer.parseInt(vals[5]);
+                Integer amm = Integer.parseInt(vals[6]);
+                Integer bp = Integer.parseInt(vals[8]);
+                SpecialMove m = new SpecialMove(id, name, et, acc, pri, amm, bp);
+                moveList.add(m);
+            }else if(vals[1].equals("STATUS")){
+                Integer id = Integer.parseInt(vals[0]);
+                String name = vals[2];
+                ElementType et = ElementType.valueOf(vals[3]);
+                Integer acc = Integer.parseInt(vals[4]);
+                Integer pri = Integer.parseInt(vals[5]);
+                Integer amm = Integer.parseInt(vals[6]);
+                String target = vals[7];
+                String statcon = vals[8];
+                String stat = vals[9];
+                String[] valstat = stat.split(",");
+                double hp = Double.parseDouble(valstat[0]);
+                double att = Double.parseDouble(valstat[1]);
+                double def = Double.parseDouble(valstat[2]);
+                double spatt = Double.parseDouble(valstat[3]);
+                double spdef = Double.parseDouble(valstat[4]);
+                double speed = Double.parseDouble(valstat[5]);
+                Stats stats = new Stats(hp, att, def, spatt, spdef, speed);
+                StatusMove m = new StatusMove(id, name, et, acc, pri, amm, target, statcon, stats);
+                moveList.add(m);
+            }
+        }
+
+        scanMove.close();
         // config Monster
         File fileMonster = new File("monster.txt");
         Scanner scanMonster = new Scanner(fileMonster);
@@ -46,6 +110,7 @@ public class Config{
                 double spatt = Double.parseDouble(valsbs[3]);
                 double spdef = Double.parseDouble(valsbs[4]);
                 double speed = Double.parseDouble(valsbs[5]);
+            Stats baseStats = new Stats(hp, att, def, spatt, spdef, speed);
             String move = vals[4];
             String[] valsmove = move.split(",");
             List<Move> moves = new ArrayList<Move>();
@@ -58,14 +123,14 @@ public class Config{
                 }
             }
             
-            Monster mon = new Monster(id, namaMon, elementTypes, hp, att, def, spatt, spdef, speed, moves);
+            Monster mon = new Monster(id, namaMon, elementTypes, baseStats, moves);
             monsterList.add(mon);
                 
         }
         scanMonster.close();
 
         //config effectivity
-        File fileEffectivity = new File("src\\effectivity.txt");
+        File fileEffectivity = new File("effectivity.txt");
         Scanner scanEff = new Scanner(fileEffectivity);
 
         while(scanEff.hasNextLine()){
@@ -76,11 +141,11 @@ public class Config{
             double eff = Double.parseDouble(vals[2]);
 
             Effectivity effectivity = new Effectivity(source, target, eff);
-            // effList.add(effectivity);
+            effList.add(effectivity);
         }
         scanEff.close();
 
-        //config moves
+        
     }
 }
 
