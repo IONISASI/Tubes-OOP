@@ -60,20 +60,21 @@ public class Battle extends Player{
         }
         sc.close();
     }
-    public static void movemonster(){
+
+    public static void switchmonster(){
 
     }
-    public static void switchmonster(){
+    public static void movemonster(){
 
     }
     public static void gameover(){
         if(player1.getMonsterList().isEmpty()){
             System.out.println("Game telah berakhir, pemenangnya adalah "+ player1.getPlayerName());
-            //exitgame();
+            Main.Menu();
         }
         else{
             System.out.println("Game telah berakhir, pemenangnya adalah "+ player2.getPlayerName());
-            //exitgame();
+            Main.Menu();
         }
     }
 }
