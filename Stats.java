@@ -1,51 +1,51 @@
   public class Stats{
-    private static double HP;
-    private static double att;
-    private static double def;
-    private static double spatt;
-    private static double spdef;
-    private static double speed;
+    private double someHP;
+    private double someAtt;
+    private double someDef;
+    private double someSpatt;
+    private double someSpdef;
+    private double someSpeed;
 
     public Stats (double someHP, double someAtt, double someDef, double someSpatt, double someSpdef, double someSpeed) {
-        this.HP = someHP;
-        this.att = someAtt;
-        this.def = someDef;
-        this.spatt = someSpatt;
-        this.spdef = someSpdef;
-        this.speed = someSpeed;
+        this.someHP = someHP;
+        this.someAtt = someAtt;
+        this.someDef = someDef;
+        this.someSpatt = someSpatt;
+        this.someSpdef = someSpdef;
+        this.someSpeed = someSpeed;
     }
     
-    public static double getHP(){
+    public double getHP(){
         double d;
-        d = (Double) java.lang.Math.floor(HP);
+        d = (Double) java.lang.Math.floor(someHP);
         return d;
     }
-    public static double getAtt() {
+    public double getAtt() {
         double d;
-        d = (Double) java.lang.Math.floor(att);
+        d = (Double) java.lang.Math.floor(someAtt);
         return d;
     }
-    public static double getDef() {
+    public double getDef() {
         double d;
-        d = (Double) java.lang.Math.floor(def);
+        d = (Double) java.lang.Math.floor(someDef);
         return d;
     }
-    public static double getspatt(){
+    public double getspatt(){
         double d;
-        d = (Double) java.lang.Math.floor(spatt);
+        d = (Double) java.lang.Math.floor(someSpatt);
         return d;
     }
-    public static double getspdef(){
+    public double getspdef(){
         double d;
-        d = (Double) java.lang.Math.floor(spdef);
+        d = (Double) java.lang.Math.floor(someSpdef);
         return d;
     }
-    public static  double getspeed(){
+    public double getspeed(){
         double d;
-        d = (Double) java.lang.Math.floor(speed);
+        d = (Double) java.lang.Math.floor(someSpeed);
         return d;
     }
-    public static void cetak(){
+    public void cetak(){
         System.out.println("STATS");
         System.out.println("HP: "+ getHP());
         System.out.println("Attack: "+getAtt());
