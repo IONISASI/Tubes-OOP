@@ -35,24 +35,18 @@ public class Damage implements Statcon{
     public static void calculateDamage(){
         double min = 0.85;  
         double max = 1;  
-        double a = Math.random()*(max-min)+min; 
-        if(Move.effect().contains("BURN") && Move.moveType().contains("NORMAL") && Move.target().contains("OWN")){
-            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(monster2.getAtt()/monster1.getDef())+2)* a * Effectivity.getEffectivity() * 0.5));
+        double a = Math.random()*(max-min+1)+min; 
+        if(Move.effect().contains("BURN") && Move.moveType().contains("NORMAL")){
+            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(Stats.getAtt()/Stats.getDef())+2)* a * Effectivity.getEffectivity() * 0.5));
         }
-        else if(Move.effect().contains("BURN") && Move.moveType().contains("NORMAL") && Move.target().contains("ENEMY")){
-            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(monster1.getAtt()/monster2.getDef())+2)* a * Effectivity.getEffectivity() * 0.5));
+        else if(Move.effect().contains("BURN") && Move.moveType().contains("SPECIAL")){
+            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(Stats.getspatt()/Stats.getspdef())+2)* a * Effectivity.getEffectivity() * 0.5));
         }
-        else if(Move.effect().contains("BURN") && Move.moveType().contains("SPECIAL") && Move.target().contains("OWN")){
-            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(monster2.getspatt()/monster1.getspdef())+2)* a * Effectivity.getEffectivity() * 0.5));
+        else if(Move.moveType().contains("SPECIAL")){
+            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(Stats.getspatt()/Stats.getspdef())+2)* a * Effectivity.getEffectivity() * 1));
         }
-        else if(Move.effect().contains("BURN") && Move.moveType().contains("SPECIAL") && Move.target().contains("ENEMY")){
-            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(monster1.getspatt()/monster2.getspdef())+2)* a * Effectivity.getEffectivity() * 0.5));
-        }
-        else if(Move.moveType().contains("NORMAL") && Move.target().contains("ENEMY")){
-            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(monster1.getAtt()/monster2.getDef())+2)* a * Effectivity.getEffectivity() * 1));
-        }
-        else if(Move.moveType().contains("NORMAL") && Move.target().contains("OWN")){
-            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(monster2.getAtt()/monster1.getDef())+2)* a * Effectivity.getEffectivity() * 1));
+        else if(Move.moveType().contains("NORMAL")){
+            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(Stats.getAtt()/Stats.getDef())+2)* a * Effectivity.getEffectivity() * 1));
         }
     }
     public static void aftercalculateDamage(){
@@ -71,7 +65,7 @@ public class Damage implements Statcon{
     }
     public static void aftereffect(){
         if(monster1.getHP()<=0 || monster2.getHP()<=0){
-            Battle.switchmonster();
+            Battle.switchMonster();
         }
     }
 }
