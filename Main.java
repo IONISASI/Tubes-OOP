@@ -8,6 +8,19 @@ public class Main{
         public static void main(String[] args){
         Welcome<String> sObj = new Welcome<String>("***********POKEMON GAME***********");
         System.out.println(sObj.getObject());
+        System.out.printf("Welcome to...\n");
+        System.out.printf("                                  ,'\\\n");
+        System.out.printf("      _.----.        ____        ,'  _\\   ___    ___     ____\n");
+        System.out.printf("  _,-'       `.     |    |  /`.   \\,-'   |   \\  /   |   |    \\  |`.\n");
+        System.out.printf("  \\     __    \\    '-.  | /   `.  ___    |    \\/    |   '-.   \\ | |\n");
+        System.out.printf("   \\.   \\ \\   |  __  |  |/    ,','_  `.  |          | __  |    \\| |\n");
+        System.out.printf("    \\    \\/   /,' _`.|      ,' / / / /   |          ,' _`.|     | |\n");
+        System.out.printf("     \\     ,-'/  /   \\    ,'  |  \\/ / ,`.|         /  / \\ |     | |\n");
+        System.out.printf("      \\    \\ |   \\_/ |   `-.  \\    `'  / |  |    | |  \\_/ |  |\\   |\n");
+        System.out.printf("      \\    \\ \\      /       `-.`.___,-'  |  |\\  /| \\      /  | |  |\n");
+        System.out.printf("       \\    \\ `.__,'|  |`-._    `|       |__| \\/ |  `.__,'|  | |  |\n");
+        System.out.printf("       \\_.-'        |__|    `-._ |               '-.|     '-.| |  |\n");
+        System.out.printf("                                `'                            '-._|\n");
         Scanner input = new Scanner(System.in);
         menu();
         int menu = input.nextInt();
@@ -85,7 +98,7 @@ public class Main{
         System.out.println("(3) View Monster Info");
         System.out.println("(4) View Game Info");
         System.out.println("(5) Exit");
-        System.out.printf("Pilihan: ");
+        System.out.println("Pilihan: ");
         boolean end = false;
         Scanner sc = new Scanner(System.in);
         while (end == false) {        
