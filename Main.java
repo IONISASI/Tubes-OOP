@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Collections;
 
-public class Main {
-      public static void main(String[] args){
+public class Main{
+        public static void main(String[] args){
+        Welcome<String> sObj = new Welcome<String>("***********POKEMON GAME***********");
+        System.out.println(sObj.getObject());
         Scanner input = new Scanner(System.in);
         menu();
         int menu = input.nextInt();
         if (menu == 1){
-            // System.out.println("Masukkan jumlah pemain: ");
-            // int jumlahPemain = input.nextInt();
-
-            // // jumlah pemain tidak lebih dan kurang dari 2
-            // while (jumlahPemain != 2){
-            //     System.out.println("Jumlah pemain tidak boleh lebih dan kurang dari 2");
-            //     jumlahPemain = input.nextInt();
-            // }
-
+            System.out.println("Masukkan jumlah pemain: ");
+            int jumlahPemain = input.nextInt();
+            while (jumlahPemain != 2){
+              System.out.println("Jumlah pemain tidak boleh lebih dan kurang dari 2");
+              jumlahPemain = input.nextInt();
+            }
+            
             List<Player> playerNameList = new ArrayList<Player>(2);
             for (int i=0; i<2;i++){
                 System.out.println();
@@ -26,7 +26,7 @@ public class Main {
                 String namaPemain = input.next();
                 playerNameList.add(new Player(i, namaPemain));
             }
-          
+            
 
             // mulai game
             try {
@@ -49,21 +49,22 @@ public class Main {
                 System.out.println("Player " + playerNameList.get(j).getPlayerName() + " mendapatkan monster: ");
                 for (Monster mon : playerNameList.get(j).getMonsterList()) {
                   System.out.println("Monster " + (j+1)+ ": " + mon.getNama());
-                  // System.out.println("Pokemon Element Type: " + mon.getElementTypesList());
-                  // System.out.println("Pokemon Move List:");
-                  // System.out.println();
-                  // for (Move m : mon.getMovesList()) {
-                  //   System.out.println("- " + m.getName() + ", " + m.getElementType());
-                  // }
+                  System.out.println("Pokemon Element Type: " + mon.getElementTypesList());
+                  System.out.println("Pokemon Move List:");
+                  System.out.println();
+                    System.out.println("- " + mon.getNama() + ", " + mon.getElementTypesList());
+                  }
                 }
-            }
+                
             } catch (Exception e) {
               
             } finally {
               selectionMenu(playerNameList);
             }
         }
+      input.close();
     }
+    
   
     public static void menu(){
         System.out.println();
@@ -73,6 +74,7 @@ public class Main {
         System.out.println("(2) Exit");
         System.out.println("Pilihan: ");
     }
+    
   
     public static void appMenu(){
         System.out.println();
@@ -143,5 +145,5 @@ public class Main {
         }
         sc.close();
       }
-    }
+    }    
 }
