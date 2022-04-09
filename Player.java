@@ -13,14 +13,14 @@ public class Player {
     public Player(int playerId, String playerName){
         this.playerId = playerId;
         this.playerName = playerName;
-        this.myMonster = monsterList.get(0);
-        this.NPMonsters.addAll(monsterList);
     }
 
     public Player(int playerId, String playerName, List<Monster> monsterList){
         this.playerId = playerId;
         this.playerName = playerName;
         this.monsterList = monsterList;
+        this.myMonster = monsterList.get(0);
+        this.NPMonsters.addAll(monsterList);
     }
 
     public int getPlayerId(){
