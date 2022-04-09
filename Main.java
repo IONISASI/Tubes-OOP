@@ -88,7 +88,17 @@ public class Main{
         System.out.println("Pilihan: ");
     }
     
-  
+    public static void viewGameInfo(){
+      System.out.println("Game ini adalah game Pokemon sederhana yang dibuat pada tahun 2022.");
+    }
+    public static void help(){
+      System.out.println("Aturan bermain: ");
+      System.out.println("1. Setiap pemain akan mendapatkan beberapa Pokemon untuk bertarung, kemudian dapat 1 monster. ");
+      System.out.println("2. Pemain dapat memilih move untuk bergerak atau switch untuk menukar pada monster yang dimiliki. ");
+      System.out.println("3. Monster akan bertarung satu sama lain dan ingat ada status kondisi tertentu yang dapat merugikan monstermu. ");
+      System.out.println("4. Jika nyawa monster habis, pemain harus menukar monster yang baru.  ");
+      System.out.println("5. Apabila jumlah monster sudah habis, maka pemain itu yang kalah.  ");
+    }
     public static void appMenu(){
         System.out.println();
         System.out.println("-------- MAIN MENU  --------");
@@ -109,13 +119,13 @@ public class Main{
               // selectionMenu();
             case 2:
               end = true;
-              // help();
+              help();
             case 3:
               end = true;
               // viewMonsterInfo();
             case 4:
               end = true;
-              // viewGameInfo();
+              viewGameInfo();
             case 5:
               end = true;
               System.exit(1);
@@ -123,7 +133,7 @@ public class Main{
         }
         sc.close();
     }
-
+    
     public static void turn(boolean switchTurn, List<Player> somePlayerNameList) {
       if (switchTurn) {
         Collections.reverse(somePlayerNameList);
