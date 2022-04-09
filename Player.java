@@ -83,7 +83,7 @@ public class Player {
         sc.close();
     }
     public void monsterDie() {
-        System.out.println("%s's monster telah mati %s "+ getPlayerName() + myMonster.getNama());
+        System.out.println("monster %s telah mati %s "+ getPlayerName() + myMonster.getNama());
         for (Monster monster : monsterList) {
             if (monster.getNama().equals(myMonster.getNama())) {
                 monsterList.remove(monster);
