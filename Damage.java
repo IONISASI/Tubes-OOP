@@ -3,6 +3,8 @@ import java.util.*;
 public class Damage implements Statcon{
     private static Monster monster1;
     private static Monster monster2;
+    private static Player player1;
+    private static Player player2;
     // public Damage(int id, String nama, List<ElementType> elementTypesList, Stats baseStats, List<Move> movesList, double HP){
     //     super(id, nama, elementTypesList, baseStats, movesList, HP);
     // }
@@ -76,8 +78,11 @@ public class Damage implements Statcon{
         }
     }
     public static void aftereffect(){
-        if(monster1.getHP()<=0 || monster2.getHP()<=0){
-            Battle.switchMonster();
+        if(monster1.getHP()<=0){
+            player1.switchMonster();
+        }
+        else if(monster2.getHP()<=0){
+            player2.switchMonster();
         }
     }
 }

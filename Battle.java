@@ -56,26 +56,10 @@ public class Battle extends Player{
         System.out.println("(2) Switch");
     }
     
-    public static void action() {
-        System.out.printf("Pilihan : ");
-        Scanner sc = new Scanner(System.in);
-        int input = sc.nextInt();
-        if (input == 1) {
-            moveMonster();
-        } else if (input == 2) {
-            switchMonster();
-        }
-        sc.close();
-    }
     
-    public static void moveMonster(){
+    public static void moveMonster() {
 
     }
-    
-    public static void switchMonster(){
-
-    }
-    
     public static void gameover(){
         if(player1.getMonsterList().isEmpty()){
             System.out.println("Game telah berakhir, pemenangnya adalah "+ player1.getPlayerName());

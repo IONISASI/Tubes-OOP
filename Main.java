@@ -148,7 +148,7 @@ public class Main{
             Battle.moveMonster();
             break;
           case 2:
-            Battle.switchMonster();
+            somePlayer.switchMonster();
             break;
           case 3:
             appMenu();
