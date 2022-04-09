@@ -64,7 +64,7 @@ public class Player {
         showNPMonster();
         if (NPMonsters.size() > 0) {
             Scanner sc = new Scanner(System.in);
-            System.out.printf("Select monster : ");
+            System.out.printf("Pilih monster : ");
             int input = sc.nextInt();
             Monster monster = myMonster;
             myMonster = NPMonsters.get(input-1);
@@ -76,14 +76,14 @@ public class Player {
     public void selectMonster() {  
         showNPMonster();
         Scanner sc = new Scanner(System.in);
-        System.out.printf("Select monster : ");
+        System.out.printf("Pilih monster : ");
         int input = sc.nextInt();
         myMonster = NPMonsters.get(input-1);
         NPMonsters.remove(input-1);
         sc.close();
     }
     public void monsterDie() {
-        System.out.println("monster %s telah mati %s "+ getPlayerName() + myMonster.getNama());
+        System.out.println("Monster %s telah mati %s "+ getPlayerName() + myMonster.getNama());
         for (Monster monster : monsterList) {
             if (monster.getNama().equals(myMonster.getNama())) {
                 monsterList.remove(monster);
