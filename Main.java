@@ -60,14 +60,16 @@ public class Main{
               for (int j=0; j<2; j++){
                 System.out.println();
                 System.out.println("Player " + playerNameList.get(j).getPlayerName() + " mendapatkan monster: ");
+                int iMon = 1;
                 for (Monster mon : playerNameList.get(j).getMonsterList()) {
-                  System.out.println("Monster " + (j+1)+ ": " + mon.getNama());
-                  System.out.println("Pokemon Element Type: " + mon.getElementTypesList());
-                  System.out.println("Pokemon Move List:");
-                  System.out.println();
-                    System.out.println("- " + mon.getNama() + ", " + mon.getElementTypesList());
+                  System.out.println("Monster " + (iMon++) + ": " + mon.getNama() + ", " + mon.getElementTypesList());
+                  int iMov = 1;
+                  for (Move m : mon.getMovesList()) {
+                    System.out.println("("+(iMov++)+") " + m.getName() + ", " + m.getElementType());
                   }
+                  System.out.println();
                 }
+              }
                 
             } catch (Exception e) {
               
