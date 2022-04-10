@@ -77,4 +77,9 @@ public class Damage implements Statcon{
             player2.switchMonster();
         }
     }
+    public static void normalattack(Monster monster1, Monster monster2) {
+        System.out.println("Normal move");
+        System.out.println("Calculating....");
+        calculateDamage();
+    }
 }
