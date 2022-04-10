@@ -12,6 +12,9 @@ public class Damage implements Statcon{
     public void burn(double HP, double att){
         HP = HP*1/8; att = att*1/2;
     }
+    public static void burning(double HP, double att){
+        HP = HP*1/8; att = att*1/2;
+    }
     public void poison(double HP){
         HP = 1/16*HP;
     }
@@ -26,48 +29,52 @@ public class Damage implements Statcon{
             Battle.skipturn(1);
         }
     }
-    public static void calculateDamage(){
+    public static double calculateDamage(){
         double min = 0.85;  
         double max = 1;  
         double a = Math.random()*(max-min+1)+min; 
+        double d = 0;
         if(Move.effect().contains("BURN") && Move.moveType().contains("NORMAL") && Move.target().contains("ENEMY")){
-            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(monster1.getAtt()/monster2.getDef())+2)* a * Effectivity.getEffectivity() * 0.5));
+            d = (java.lang.Math.floor((NormalMove.getBasePower()*(monster1.getAtt()/monster2.getDef())+2)* a * Effectivity.getEffectivity() * 0.5));
         }
         else if(Move.effect().contains("BURN") && Move.moveType().contains("SPECIAL") && Move.target().contains("ENEMY")){
-            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(monster1.getspatt()/monster2.getspdef())+2)* a * Effectivity.getEffectivity() * 0.5));
+            d = (java.lang.Math.floor((SpecialMove.getBasePower()*(monster1.getspatt()/monster2.getspdef())+2)* a * Effectivity.getEffectivity() * 0.5));
         }
         else if(Move.moveType().contains("SPECIAL") && Move.target().contains("ENEMY")){
-            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(monster1.getspatt()/monster2.getspdef())+2)* a * Effectivity.getEffectivity() * 1));
+            d = (java.lang.Math.floor((SpecialMove.getBasePower()*(monster1.getspatt()/monster2.getspdef())+2)* a * Effectivity.getEffectivity() * 1));
         }
         else if(Move.moveType().contains("NORMAL") && Move.target().contains("ENEMY")){
-            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(monster1.getAtt()/monster2.getDef())+2)* a * Effectivity.getEffectivity() * 1));
+            d = (java.lang.Math.floor((NormalMove.getBasePower()*(monster1.getAtt()/monster2.getDef())+2)* a * Effectivity.getEffectivity() * 1));
         }
         else if(Move.effect().contains("BURN") && Move.moveType().contains("NORMAL") && Move.target().contains("OWN")){
-            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(monster2.getAtt()/monster1.getDef())+2)* a * Effectivity.getEffectivity() * 0.5));
+            d = (java.lang.Math.floor((NormalMove.getBasePower()*(monster2.getAtt()/monster1.getDef())+2)* a * Effectivity.getEffectivity() * 0.5));
         }
         else if(Move.effect().contains("BURN") && Move.moveType().contains("SPECIAL") && Move.target().contains("OWN")){
-            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(monster2.getspatt()/monster1.getspdef())+2)* a * Effectivity.getEffectivity() * 0.5));
+            d = (java.lang.Math.floor((SpecialMove.getBasePower()*(monster2.getspatt()/monster1.getspdef())+2)* a * Effectivity.getEffectivity() * 0.5));
         }
         else if(Move.moveType().contains("SPECIAL") && Move.target().contains("OWN")){
-            System.out.println(java.lang.Math.floor((SpecialMove.getBasePower()*(monster2.getspatt()/monster1.getspdef())+2)* a * Effectivity.getEffectivity() * 1));
+            d = (java.lang.Math.floor((SpecialMove.getBasePower()*(monster2.getspatt()/monster1.getspdef())+2)* a * Effectivity.getEffectivity() * 1));
         }
         else if(Move.moveType().contains("NORMAL") && Move.target().contains("OWN")){
-            System.out.println(java.lang.Math.floor((NormalMove.getBasePower()*(monster2.getAtt()/monster1.getDef())+2)* a * Effectivity.getEffectivity() * 1));
+            d = (java.lang.Math.floor((NormalMove.getBasePower()*(monster2.getAtt()/monster1.getDef())+2)* a * Effectivity.getEffectivity() * 1));
         }
+        return d;
     }
-    public static void aftercalculateDamage(){
+    public static double aftercalculateDamage(){
+        double d = 0;
         if(Move.effect().contains("BURN") && Move.target().contains("OWN")){
-            System.out.println(java.lang.Math.floor(monster1.getHP()/8));
+            d = (java.lang.Math.floor(monster1.getHP()/8));
         }
         else if(Move.effect().contains("POISON")&& Move.target().contains("OWN")){
-            System.out.println(java.lang.Math.floor(monster1.getHP()/16));
+            d = (java.lang.Math.floor(monster1.getHP()/16));
         }
         else if(Move.effect().contains("BURN") && Move.target().contains("ENEMY")){
-            System.out.println(java.lang.Math.floor(monster2.getHP()/8));
+            d = (java.lang.Math.floor(monster2.getHP()/8));
         }
         else if(Move.effect().contains("POISON") && Move.target().contains("ENEMY")){
-            System.out.println(java.lang.Math.floor(monster2.getHP()/16));
+            d = (java.lang.Math.floor(monster2.getHP()/16));
         }
+        return d;
     }
     public static void aftereffect(){
         if(monster1.getHP()<=0){
@@ -80,6 +87,20 @@ public class Damage implements Statcon{
     public static void normalattack(Monster monster1, Monster monster2) {
         System.out.println("Normal move");
         System.out.println("Calculating....");
-        calculateDamage();
+        double d = calculateDamage();
+        System.out.println(monster2.getHP() - d);
+    }
+    public static void spattack(Monster monster1, Monster monster2) {
+        System.out.println("Special move");
+        System.out.println("Calculating....");
+        double d = calculateDamage();
+        System.out.println(monster2.getHP() - d);
+    }
+    public static void burn(Monster monster1, Monster monster2) {
+        System.out.println("Burn");
+        System.out.println("Calculating....");
+        double d = calculateDamage();
+        System.out.println(monster2.getHP() - d);
+        burning(monster2.getHP(), monster2.getAtt());
     }
 }

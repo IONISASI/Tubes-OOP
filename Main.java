@@ -199,6 +199,7 @@ public class Main{
       List<Monster> monsterList = currentPlayer.getMonsterList();
       Monster currentMonster = monsterList.get(0);
       List<Move> movesList = currentMonster.getMovesList();
+      Monster enemyMonster = monsterList.get(1);
 
       monsterBattle(somePlayerNameList);
       
@@ -215,12 +216,15 @@ public class Main{
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
         switch(input) {
-        //   case 1:
-        //     break;
-        //   case 2:
-        //     break;
-        //   case 3:
-        //     break;
+          case 1:
+          Damage.normalattack(currentMonster, enemyMonster);
+          break;
+          case 2:
+          Damage.spattack(currentMonster, enemyMonster);
+          break;
+          case 3:
+          Damage.burn(currentMonster, enemyMonster);
+          break;
         //   default:
         //     battleMenu(somePlayerNameList);
         }
