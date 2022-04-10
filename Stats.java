@@ -46,12 +46,23 @@
         return d;
     }
     public void cetak(){
-        System.out.println("STATS");
-        System.out.println("HP: "+ getHP());
-        System.out.println("Attack: "+getAtt());
-        System.out.println("Defense: "+getDef());
-        System.out.println("Sp.Atk: "+getspatt());
-        System.out.println("Sp.Def: "+getspdef());
-        System.out.println("Speed: "+getspeed());
+        try{
+            Thread.sleep(200);
+            System.out.println("***************STATUS***************");
+            Thread.sleep(200);
+            System.out.println("HP: "+ getHP());
+            Thread.sleep(200);
+            System.out.println("Attack: "+getAtt());
+            Thread.sleep(200);
+            System.out.println("Defense: "+getDef());
+            Thread.sleep(200);
+            System.out.println("Sp.Atk: "+getspatt());
+            Thread.sleep(200);
+            System.out.println("Sp.Def: "+getspdef());
+            Thread.sleep(200);
+            System.out.println("Speed: "+getspeed());
+        } catch(Exception e){ 
+
+        }
     }
 }

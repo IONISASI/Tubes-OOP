@@ -87,17 +87,32 @@ public class Main{
         System.out.println("Pilihan: ");
     }
     
-    public static void viewGameInfo(){
-      System.out.println("Game ini adalah game Pokemon sederhana yang dibuat pada tahun 2022.");
+    public static void viewGameInfo(List<Player> somePlayerNameList){
+        System.out.println("Game ini adalah game Pokemon sederhana yang dibuat pada tahun 2022.");
+        appMenu(somePlayerNameList);
     }
-    public static void help(){
-      System.out.println("Aturan bermain: ");
-      System.out.println("1. Setiap pemain akan mendapatkan beberapa Pokemon untuk bertarung, kemudian dapat 1 monster. ");
-      System.out.println("2. Pemain dapat memilih move untuk bergerak atau switch untuk menukar pada monster yang dimiliki. ");
-      System.out.println("3. Monster akan bertarung satu sama lain dan ingat ada status kondisi tertentu yang dapat merugikan monstermu. ");
-      System.out.println("4. Jika nyawa monster habis, pemain harus menukar monster yang baru.  ");
-      System.out.println("5. Apabila jumlah monster sudah habis, maka pemain itu yang kalah.  ");
+    public static void help(List<Player> somePlayerNameList){
+      try{
+        System.out.println("Aturan bermain: ");
+        Thread.sleep(500);
+        System.out.println("1. Setiap pemain akan mendapatkan beberapa Pokemon untuk bertarung, kemudian dapat 1 monster. ");
+        Thread.sleep(500);
+        System.out.println("2. Pemain dapat memilih move untuk bergerak atau switch untuk menukar pada monster yang dimiliki. ");
+        Thread.sleep(500);
+        System.out.println("3. Monster akan bertarung satu sama lain dan ingat ada status kondisi tertentu yang dapat merugikan monstermu. ");
+        Thread.sleep(500);
+        System.out.println("4. Jika nyawa monster habis, pemain harus menukar monster yang baru.  ");
+        Thread.sleep(500);
+        System.out.println("5. Apabila jumlah monster sudah habis, maka pemain itu yang kalah.  ");
+      }
+      catch (Exception e) {
+              
+      }
+      finally{
+        appMenu(somePlayerNameList);
+      }
     }
+  
     public static void appMenu(List<Player> somePlayerNameList){
         System.out.println();
         System.out.println("-------- MAIN MENU  --------");
@@ -118,13 +133,13 @@ public class Main{
               battleMenu(somePlayerNameList);
             case 2:
               end = true;
-              help();
+              help(somePlayerNameList);
             case 3:
               end = true;
-              // viewMonsterInfo();
+              viewMonsterInfo(somePlayerNameList);
             case 4:
               end = true;
-              viewGameInfo();
+              viewGameInfo(somePlayerNameList);
             case 5:
               end = true;
               System.exit(1);
@@ -132,7 +147,6 @@ public class Main{
         }
         sc.close();
     }
-    
     public static void turn(boolean switchTurn, List<Player> somePlayerNameList) {
       if (switchTurn) {
         Collections.reverse(somePlayerNameList);
@@ -240,7 +254,7 @@ public class Main{
       battleMenu(somePlayerNameList);
     }
 
-      public static void monsterBattle(List<Player> somePlayerNameList) {
+    public static void monsterBattle(List<Player> somePlayerNameList) {
       Player currentPlayer = somePlayerNameList.get(0);
       Monster currentMonster = currentPlayer.getMonsterList().get(0);
       Player enemyPlayer = somePlayerNameList.get(1);
@@ -255,4 +269,20 @@ public class Main{
       System.out.println("HP: " + enemyMonster.getHP());
       System.out.println("--------------------------------");
     }    
+    public static void viewMonsterInfo(List<Player> somePlayerNameList){
+      Player currentPlayer = somePlayerNameList.get(0);
+      Monster currentMonster = currentPlayer.getMonsterList().get(0);
+      Player enemyPlayer = somePlayerNameList.get(1);
+      Monster enemyMonster = currentPlayer.getMonsterList().get(1); 
+        if(currentPlayer == somePlayerNameList.get(0)){
+          System.out.println(currentMonster.getNama());
+          currentMonster.cetak();
+          appMenu(somePlayerNameList);
+        }
+        else if(enemyPlayer == somePlayerNameList.get(1)){
+          System.out.println(enemyMonster.getNama());
+          enemyMonster.cetak();
+          appMenu(somePlayerNameList);
+        }
+    }
 }

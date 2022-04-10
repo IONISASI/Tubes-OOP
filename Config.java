@@ -148,7 +148,7 @@ public class Config {
           }
         }
       }
-
+      
       Monster mon = new Monster(id, namaMon, elementTypes, baseStats, moves);
       monsterList.add(mon);
 
