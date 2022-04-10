@@ -25,12 +25,6 @@ public class Main{
         menu();
         int menu = input.nextInt();
         if (menu == 1){
-            System.out.println("Masukkan jumlah pemain: ");
-            int jumlahPemain = input.nextInt();
-            while (jumlahPemain != 2){
-              System.out.println("Jumlah pemain tidak boleh lebih dan kurang dari 2");
-              jumlahPemain = input.nextInt();
-            }
             
             List<Player> playerNameList = new ArrayList<Player>(2);
             for (int i=0; i<2;i++){
@@ -44,9 +38,9 @@ public class Main{
             // mulai game
             try {
               new Config();
-              // Config.testMonster();
               
               System.out.println();
+              Thread.sleep(500);  
               System.out.println("Memulai shuffle monster untuk player...");
               List<Monster> randomMonsterList = Config.monsterList;
               for (int i=0; i<6;i++){
@@ -56,25 +50,28 @@ public class Main{
               }
 
               System.out.println();
+              Thread.sleep(1000);  
               System.out.println("Shuffle monster selesai...");
               for (int j=0; j<2; j++){
                 System.out.println();
+                Thread.sleep(500);  
                 System.out.println("Player " + playerNameList.get(j).getPlayerName() + " mendapatkan monster: ");
+                Thread.sleep(500);  
                 int iMon = 1;
                 for (Monster mon : playerNameList.get(j).getMonsterList()) {
-                  System.out.println("Monster " + (iMon++) + ": " + mon.getNama() + ", " + mon.getElementTypesList());
-                  int iMov = 1;
+                  System.out.print("Monster " + (iMon++) + ": " + mon.getNama() + " " + mon.getElementTypesList() + " =");
                   for (Move m : mon.getMovesList()) {
-                    System.out.println("("+(iMov++)+") " + m.getName() + ", " + m.getElementType());
+                    System.out.print(" " + m.getName() + ",");
                   }
                   System.out.println();
+                  Thread.sleep(500);  
                 }
               }
                 
             } catch (Exception e) {
               
             } finally {
-              selectionMenu(playerNameList);
+              battleMenu(playerNameList);
             }
         }
       input.close();
@@ -101,7 +98,7 @@ public class Main{
       System.out.println("4. Jika nyawa monster habis, pemain harus menukar monster yang baru.  ");
       System.out.println("5. Apabila jumlah monster sudah habis, maka pemain itu yang kalah.  ");
     }
-    public static void appMenu(){
+    public static void appMenu(List<Player> somePlayerNameList){
         System.out.println();
         System.out.println("-------- MAIN MENU  --------");
         System.out.println("Petunjuk: mohon tulis angkanya saja");
@@ -118,7 +115,7 @@ public class Main{
           switch(input) {
             case 1:
               end = true;
-              // selectionMenu();
+              battleMenu(somePlayerNameList);
             case 2:
               end = true;
               help();
@@ -142,12 +139,15 @@ public class Main{
       }
     }
     
-    public static void selectionMenu(List<Player> somePlayerNameList) {
+    public static void battleMenu(List<Player> somePlayerNameList) {
       Player somePlayer = somePlayerNameList.get(0);
+
+      monsterBattle(somePlayerNameList);
+      
       boolean endMenu = false;
       while (endMenu == false) {
         System.out.println();
-        System.out.println("-------- "+ somePlayer.getPlayerName() +" BATTLE MENU  --------");
+        System.out.println("--------  BATTLE MENU: "+ somePlayer.getPlayerName() +"  --------");
         System.out.println("Petunjuk: mohon tulis angkanya saja");
         System.out.println("(1) Move");
         System.out.println("(2) Switch");
@@ -157,18 +157,102 @@ public class Main{
         int input = sc.nextInt();
         switch(input) {
           case 1:
-            Battle.moveMonster();
+            moveMenu(somePlayerNameList);
+            changeTurn(somePlayerNameList);
             break;
           case 2:
-            somePlayer.switchMonster();
+            switchMenu(somePlayerNameList);
+            changeTurn(somePlayerNameList);
             break;
           case 3:
-            appMenu();
+            appMenu(somePlayerNameList);
             break;
-          default:
-            selectionMenu(somePlayerNameList);
         }
         sc.close();
       }
+    }
+
+    public static void moveMenu(List<Player> somePlayerNameList) {
+      Player currentPlayer = somePlayerNameList.get(0);
+      List<Monster> monsterList = currentPlayer.getMonsterList();
+      Monster currentMonster = monsterList.get(0);
+      List<Move> movesList = currentMonster.getMovesList();
+
+      monsterBattle(somePlayerNameList);
+      
+      boolean endMenu = false;
+      while (endMenu == false) {
+        System.out.println();
+        System.out.println("--------  MOVE MENU: "+ currentPlayer.getPlayerName() +"  --------");
+        System.out.println("Petunjuk: mohon tulis angkanya saja");
+        int iMov = 1;
+        for (Move mov : (movesList)) {
+          System.out.println("(" + (iMov++) + ") " + mov.getName());
+        }
+        System.out.printf("Pilihan: ");
+        Scanner sc = new Scanner(System.in);
+        int input = sc.nextInt();
+        switch(input) {
+        //   case 1:
+        //     break;
+        //   case 2:
+        //     break;
+        //   case 3:
+        //     break;
+        //   default:
+        //     battleMenu(somePlayerNameList);
+        }
+        sc.close();
+      }
+    }    
+
+    public static void switchMenu(List<Player> somePlayerNameList) {
+      Player currentPlayer = somePlayerNameList.get(0);
+      List<Monster> monsterList = currentPlayer.getMonsterList();
+
+      monsterBattle(somePlayerNameList);
+      
+      boolean endMenu = false;
+      while (endMenu == false) {
+        System.out.println();
+        System.out.println("--------  SWITCH MENU: "+ currentPlayer.getPlayerName() +"  --------");
+        System.out.println("Petunjuk: mohon tulis angkanya saja");
+        int iMon = 1;
+        int sizeMon = monsterList.size();
+        for (int m = 0; m < sizeMon-1; m++) {
+          System.out.println("(" + (iMon++) + ") " + monsterList.get((m+1)).getNama() + " (HP: " + monsterList.get((m+1)).getHP() + ")");
+        }
+        System.out.printf("Pilihan: ");
+        Scanner sc = new Scanner(System.in);
+        int input = sc.nextInt();
+        System.out.println("Swap: " + monsterList.get(input));
+        try {
+          Collections.swap(monsterList, 0, input);
+        } catch (Exception e) {
+          System.out.println("Exception thrown: " + e);
+        }
+        sc.close();
+      }
+    }
+
+    public static void changeTurn (List<Player> somePlayerNameList) {
+      Collections.reverse(somePlayerNameList);
+      battleMenu(somePlayerNameList);
+    }
+
+      public static void monsterBattle(List<Player> somePlayerNameList) {
+      Player currentPlayer = somePlayerNameList.get(0);
+      Monster currentMonster = currentPlayer.getMonsterList().get(0);
+      Player enemyPlayer = somePlayerNameList.get(1);
+      Monster enemyMonster = currentPlayer.getMonsterList().get(1);
+      
+      System.out.println();
+      System.out.println("--------------------------------");
+      System.out.println(currentPlayer.getPlayerName() + ": " + currentMonster.getNama());
+      System.out.println("HP: " + currentMonster.getHP());
+      System.out.println("--------------------------------");
+      System.out.println(enemyPlayer.getPlayerName() + ": " + enemyMonster.getNama());
+      System.out.println("HP: " + enemyMonster.getHP());
+      System.out.println("--------------------------------");
     }    
 }
