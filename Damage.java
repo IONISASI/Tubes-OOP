@@ -12,16 +12,8 @@ public class Damage implements Statcon{
     public void burn(double HP, double att){
         HP = HP*1/8; att = att*1/2;
     }
-    public static double burnHP(double HP){
-        HP = HP*1/8;
-        return HP;
-    }
     public void poison(double HP){
         HP = 1/16*HP;
-    }
-    public static double poisoned(double HP){
-        HP = 1/16*HP;
-        return HP;
     }
     public void sleep(int x){
         x = (int) (Math.random() * 7) + 1;
@@ -65,16 +57,16 @@ public class Damage implements Statcon{
     }
     public static void aftercalculateDamage(){
         if(Move.effect().contains("BURN") && Move.target().contains("OWN")){
-            System.out.println(java.lang.Math.floor(burnHP(monster1.getHP())));
+            System.out.println(java.lang.Math.floor(monster1.getHP()/8));
         }
         else if(Move.effect().contains("POISON")&& Move.target().contains("OWN")){
-            System.out.println(java.lang.Math.floor(poisoned(monster1.getHP())));
+            System.out.println(java.lang.Math.floor(monster1.getHP()/16));
         }
         else if(Move.effect().contains("BURN") && Move.target().contains("ENEMY")){
-            System.out.println(java.lang.Math.floor(burnHP(monster2.getHP())));
+            System.out.println(java.lang.Math.floor(monster2.getHP()/8));
         }
         else if(Move.effect().contains("POISON") && Move.target().contains("ENEMY")){
-            System.out.println(java.lang.Math.floor(poisoned(monster2.getHP())));
+            System.out.println(java.lang.Math.floor(monster2.getHP()/16));
         }
     }
     public static void aftereffect(){
