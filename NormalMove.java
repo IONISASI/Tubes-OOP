@@ -10,6 +10,4 @@ public class NormalMove extends Move{
     public static int getBasePower(){
         return basePower;
     }
-
-    
 }
