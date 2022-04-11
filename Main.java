@@ -305,7 +305,7 @@ public class Main{
       for (Monster eneMon : enemyPlayer.getMonsterList()) {
         if (ene == 1) {
           System.out.println();
-          System.out.println(currentPlayer.getPlayerName() + "'s Monster");
+          System.out.println(enemyPlayer.getPlayerName() + "'s Monster");
           System.out.println("-----------------------------------------------");
         }
         System.out.println("No. " + String.valueOf(ene++) + ": " + eneMon.getNama());
