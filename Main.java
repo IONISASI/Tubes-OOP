@@ -221,9 +221,10 @@ public class Main{
         }
         System.out.printf("Pilihan: ");
         Scanner sc = new Scanner(System.in);
-        int input = sc.nextInt();
-        System.out.println("Swap: " + monsterList.get(input));
+        int input = sc.nextInt(); 
         try {
+          System.out.println();
+          System.out.println("Berhasil Switch Monster " + currentPlayer.getPlayerName() + ": " + monsterList.get(0).getNama() + " -> " + monsterList.get(input).getNama());
           Collections.swap(monsterList, 0, input);
         } catch (Exception e) {
           System.out.println("Exception thrown: " + e);
