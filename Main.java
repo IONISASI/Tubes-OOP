@@ -50,13 +50,13 @@ public class Main{
               }
 
               System.out.println();
-              Thread.sleep(1000);  
+              // Thread.sleep(1000);  
               System.out.println("Shuffle monster selesai...");
               for (int j=0; j<2; j++){
                 System.out.println();
-                Thread.sleep(500);  
+                // Thread.sleep(500);  
                 System.out.println("Player " + playerNameList.get(j).getPlayerName() + " mendapatkan monster: ");
-                Thread.sleep(500);  
+                // Thread.sleep(500);  
                 int iMon = 1;
                 for (Monster mon : playerNameList.get(j).getMonsterList()) {
                   System.out.print("Monster " + (iMon++) + ": " + mon.getNama() + " " + mon.getElementTypesList() + " =");
@@ -64,7 +64,7 @@ public class Main{
                     System.out.print(" " + m.getName() + ",");
                   }
                   System.out.println();
-                  Thread.sleep(500);  
+                  // Thread.sleep(500);  
                 }
               }
                 
@@ -171,14 +171,17 @@ public class Main{
         int input = sc.nextInt();
         switch(input) {
           case 1:
+            endMenu = true;
             moveMenu(somePlayerNameList);
-            changeTurn(somePlayerNameList);
+            // changeTurn(somePlayerNameList);
             break;
           case 2:
+            endMenu = true;
             switchMenu(somePlayerNameList);
-            changeTurn(somePlayerNameList);
+            // changeTurn(somePlayerNameList);
             break;
           case 3:
+            endMenu = true;
             appMenu(somePlayerNameList);
             break;
         }
@@ -209,22 +212,20 @@ public class Main{
         int input = sc.nextInt();
         switch(input) {
           case 1:
+          endMenu = true;
           Damage.normalattack(currentMonster, enemyMonster);
           changeTurn(somePlayerNameList);
-          battleMenu(somePlayerNameList);
           break;
           case 2:
+          endMenu = true;
           Damage.spattack(currentMonster, enemyMonster);
           changeTurn(somePlayerNameList);
-          battleMenu(somePlayerNameList);
           break;
           case 3:
+          endMenu = true;
           Damage.burn(currentMonster, enemyMonster);
           changeTurn(somePlayerNameList);
-          battleMenu(somePlayerNameList);
           break;
-        //   default:
-        //     battleMenu(somePlayerNameList);
         }
         sc.close();
       }
@@ -254,6 +255,9 @@ public class Main{
           Collections.swap(monsterList, 0, input);
         } catch (Exception e) {
           System.out.println("Exception thrown: " + e);
+        } finally {
+          endMenu = true;
+          changeTurn(somePlayerNameList);
         }
         sc.close();
       }
@@ -268,7 +272,7 @@ public class Main{
       Player currentPlayer = somePlayerNameList.get(0);
       Monster currentMonster = currentPlayer.getMonsterList().get(0);
       Player enemyPlayer = somePlayerNameList.get(1);
-      Monster enemyMonster = currentPlayer.getMonsterList().get(1);
+      Monster enemyMonster = enemyPlayer.getMonsterList().get(0);
       
       System.out.println();
       System.out.println("--------------------------------");
@@ -279,6 +283,7 @@ public class Main{
       System.out.println("HP: " + enemyMonster.getHP());
       System.out.println("--------------------------------");
     }    
+  
     public static void viewMonsterInfo(List<Player> somePlayerNameList){
       Player currentPlayer = somePlayerNameList.get(0);
       Monster currentMonster = currentPlayer.getMonsterList().get(0);
