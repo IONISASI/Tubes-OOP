@@ -218,12 +218,18 @@ public class Main{
         switch(input) {
           case 1:
           Damage.normalattack(currentMonster, enemyMonster);
+          changeTurn(somePlayerNameList);
+          battleMenu(somePlayerNameList);
           break;
           case 2:
           Damage.spattack(currentMonster, enemyMonster);
+          changeTurn(somePlayerNameList);
+          battleMenu(somePlayerNameList);
           break;
           case 3:
           Damage.burn(currentMonster, enemyMonster);
+          changeTurn(somePlayerNameList);
+          battleMenu(somePlayerNameList);
           break;
         //   default:
         //     battleMenu(somePlayerNameList);
