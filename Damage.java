@@ -12,16 +12,20 @@ public class Damage implements Statcon{
     public void burn(double HP, double att){
         HP = HP*1/8; att = att*1/2;
     }
+  
     public static void burning(double HP, double att){
         HP = HP*1/8; att = att*1/2;
     }
+  
     public void poison(double HP){
         HP = 1/16*HP;
     }
+  
     public void sleep(int x){
         x = (int) (Math.random() * 7) + 1;
         Battle.skipturn(x);
     }
+  
     public void paralyze(double speed, int y){
         speed = speed*1/2;
         y = new Random().nextInt(4);
@@ -29,6 +33,7 @@ public class Damage implements Statcon{
             Battle.skipturn(1);
         }
     }
+  
     public static double calculateDamage(){
         double min = 0.85;  
         double max = 1;  
@@ -60,6 +65,7 @@ public class Damage implements Statcon{
         }
         return d;
     }
+  
     public static double aftercalculateDamage(){
         double d = 0;
         if(Move.effect().contains("BURN") && Move.target().contains("OWN")){
@@ -76,26 +82,30 @@ public class Damage implements Statcon{
         }
         return d;
     }
-    public static void aftereffect(){
-        if(monster1.getHP()<=0){
-            player1.switchMonster();
-        }
-        else if(monster2.getHP()<=0){
-            player2.switchMonster();
-        }
-    }
+  
+    // public static void aftereffect(){
+    //     if (monster1.getHP()<=0){
+    //         player1.switchMonster();
+    //     }
+    //     else if (monster2.getHP()<=0){
+    //         player2.switchMonster();
+    //     }
+    // }
+  
     public static void normalattack(Monster monster1, Monster monster2) {
         System.out.println("Normal move");
         System.out.println("Calculating....");
         double d = calculateDamage();
         System.out.println(monster2.getHP() - d);
     }
+  
     public static void spattack(Monster monster1, Monster monster2) {
         System.out.println("Special move");
         System.out.println("Calculating....");
         double d = calculateDamage();
         System.out.println(monster2.getHP() - d);
     }
+  
     public static void burn(Monster monster1, Monster monster2) {
         System.out.println("Burn");
         System.out.println("Calculating....");

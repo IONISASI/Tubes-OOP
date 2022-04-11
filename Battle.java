@@ -62,11 +62,11 @@ public class Battle extends Player{
     public static void gameover(){
         if(player1.getMonsterList().isEmpty()){
             System.out.println("Game telah berakhir, pemenangnya adalah "+ player1.getPlayerName());
-            Main.menu();
+            Main.main(new String[0]);
         }
         else{
             System.out.println("Game telah berakhir, pemenangnya adalah "+ player2.getPlayerName());
-            Main.menu();
+            Main.main(new String[0]);
         }
     }
 }
