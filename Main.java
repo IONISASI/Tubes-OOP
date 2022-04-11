@@ -160,8 +160,6 @@ public class Main{
       
       boolean endMenu = false;
       while (endMenu == false) {
-        Player currentPlayer = somePlayerNameList.get(0);
-        Player enemyPlayer = somePlayerNameList.get(1);
         System.out.println();
         System.out.println("--------  BATTLE MENU: "+ somePlayer.getPlayerName() +"  --------");
         System.out.println("Petunjuk: mohon tulis angkanya saja");
@@ -177,14 +175,8 @@ public class Main{
             changeTurn(somePlayerNameList);
             break;
           case 2:
-          if(somePlayer.getPlayerName() == currentPlayer.getPlayerName()){
             switchMenu(somePlayerNameList);
             changeTurn(somePlayerNameList);
-          }
-          else if(somePlayer.getPlayerName() == enemyPlayer.getPlayerName()){
-            switchMenu2(somePlayerNameList);
-            changeTurn(somePlayerNameList);
-          }
             break;
           case 3:
             appMenu(somePlayerNameList);
@@ -248,34 +240,6 @@ public class Main{
       while (endMenu == false) {
         System.out.println();
         System.out.println("--------  SWITCH MENU: "+ currentPlayer.getPlayerName() +"  --------");
-        System.out.println("Petunjuk: mohon tulis angkanya saja");
-        int iMon = 1;
-        int sizeMon = monsterList.size();
-        for (int m = 0; m < sizeMon-1; m++) {
-          System.out.println("(" + (iMon++) + ") " + monsterList.get((m+1)).getNama() + " (HP: " + monsterList.get((m+1)).getHP() + ")");
-        }
-        System.out.printf("Pilihan: ");
-        Scanner sc = new Scanner(System.in);
-        int input = sc.nextInt();
-        System.out.println("Swap: " + monsterList.get(input));
-        try {
-          Collections.swap(monsterList, 0, input);
-        } catch (Exception e) {
-          System.out.println("Exception thrown: " + e);
-        }
-        sc.close();
-      }
-    }
-    public static void switchMenu2(List<Player> somePlayerNameList) {
-      Player enemyPlayer = somePlayerNameList.get(1);
-      List<Monster> monsterList = enemyPlayer.getMonsterList();
-
-      monsterBattle(somePlayerNameList);
-      
-      boolean endMenu = false;
-      while (endMenu == false) {
-        System.out.println();
-        System.out.println("--------  SWITCH MENU: "+ enemyPlayer.getPlayerName() +"  --------");
         System.out.println("Petunjuk: mohon tulis angkanya saja");
         int iMon = 1;
         int sizeMon = monsterList.size();
