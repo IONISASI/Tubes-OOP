@@ -125,6 +125,11 @@ public class Main{
         Collections.reverse(somePlayerNameList);
       }
     }
+    public static void skipturn(boolean skipturn, List<Player> somePlayerNameList) {
+      if (skipturn) {
+        Collections.rotate(somePlayerNameList, 2);
+      }
+    }
     
     public static void battleMenu(List<Player> somePlayerNameList) {
       Player somePlayer = somePlayerNameList.get(0);
@@ -137,6 +142,7 @@ public class Main{
         System.out.println("(1) Move");
         System.out.println("(2) Switch");
         System.out.println("(3) Back to Menu");
+        System.out.println("(4) Skip Turn");
         System.out.printf("Pilihan: ");
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
@@ -152,6 +158,11 @@ public class Main{
           case 3:
             endMenu = true;
             appMenu(somePlayerNameList);
+            break;
+          case 4:
+            endMenu = true;
+            skipturn(true, somePlayerNameList);
+            changeTurn(somePlayerNameList);
             break;
         }
         sc.close();
