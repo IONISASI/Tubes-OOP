@@ -193,23 +193,8 @@ public class Main{
         System.out.printf("Pilihan: ");
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
-        switch(input) {
-          case 1:
-            endMenu = true;
-            Damage.normalattack(currentMonster, enemyMonster);
-            changeTurn(somePlayerNameList);
-            break;
-          case 2:
-            endMenu = true;
-            Damage.spattack(currentMonster, enemyMonster);
-            changeTurn(somePlayerNameList);
-            break;
-          case 3:
-            endMenu = true;
-            Damage.burn(currentMonster, enemyMonster);
-            changeTurn(somePlayerNameList);
-            break;
-        }
+        Damage.calculateDamage(currentMonsterMovesList.get(input-1), somePlayerNameList);
+        changeTurn(somePlayerNameList);
         sc.close();
       }
     }    

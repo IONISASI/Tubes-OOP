@@ -34,7 +34,7 @@ public class Damage implements Statcon{
         }
     }
   
-    public static double calculateDamage(){
+    public static double calculateDamage(Move move, List<Player> somePlayerNameList){
         double min = 0.85;  
         double max = 1;  
         double a = Math.random()*(max-min+1)+min; 
@@ -65,8 +65,7 @@ public class Damage implements Statcon{
         }
         return d;
     }
-  
-    public static double aftercalculateDamage(){
+    public static double aftercalculateDamage(Move move, List<Player> somePlayerNameList){
         double d = 0;
         if(Move.effect().contains("BURN") && Move.target().contains("OWN")){
             d = (java.lang.Math.floor(monster1.getHP()/8));
@@ -91,26 +90,4 @@ public class Damage implements Statcon{
     //         player2.switchMonster();
     //     }
     // }
-  
-    public static void normalattack(Monster monster1, Monster monster2) {
-        System.out.println("Normal move");
-        System.out.println("Calculating....");
-        double d = calculateDamage();
-        System.out.println(monster2.getHP() - d);
-    }
-  
-    public static void spattack(Monster monster1, Monster monster2) {
-        System.out.println("Special move");
-        System.out.println("Calculating....");
-        double d = calculateDamage();
-        System.out.println(monster2.getHP() - d);
-    }
-  
-    public static void burn(Monster monster1, Monster monster2) {
-        System.out.println("Burn");
-        System.out.println("Calculating....");
-        double d = calculateDamage();
-        System.out.println(monster2.getHP() - d);
-        burning(monster2.getHP(), monster2.getAtt());
-    }
 }
