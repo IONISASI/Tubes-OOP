@@ -5,8 +5,8 @@ public class StatusMove extends Move{
 
     //kayanya gini sih
 
-    public StatusMove(int id, String name, ElementType elementType, Integer accuracy, Integer priority, Integer ammunition, String target, String statcon, Stats stats){
-        super(id, name, elementType, accuracy, priority, ammunition);
+    public StatusMove(int id, String moveType, String name, ElementType elementType, Integer accuracy, Integer priority, Integer ammunition, String target, String statcon, Stats stats){
+        super(id, moveType, name, elementType, accuracy, priority, ammunition);
         this.target = target;
         this.statcon = statcon;
         this.stats = stats;
@@ -23,4 +23,5 @@ public class StatusMove extends Move{
     public Stats getStats(){
         return this.stats;
     }
+
 }

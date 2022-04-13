@@ -1,6 +1,6 @@
 public interface Statcon {
-    void burn(double HP, double att);
-    void poison(double HP);
-    void sleep(int x);
-    void paralyze(double speed, int y);
+    void burn(Monster m);
+    void poison(Monster m);
+    void sleep();
+    void paralyze(Monster m);
 }

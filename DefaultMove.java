@@ -1,9 +1,9 @@
 public class DefaultMove extends Move{
     private int basePower;
     //constructor
-    public DefaultMove(int id, String name, int basePower){
-        super(id, name, ElementType.valueOf("NORMAL"), 100, 0, Integer.MAX_VALUE);
-        this.basePower = basePower;
+    public DefaultMove(){
+        super(0, "DEFAULT", "DEFAULT", ElementType.valueOf("NORMAL"), 100, 0, Integer.MAX_VALUE);
+        this.basePower = 50;
     }
 
     //getter

@@ -179,6 +179,7 @@ public class Main{
       List<Monster> monsterList = enemyPlayer.getMonsterList();
       Monster enemyMonster = monsterList.get(0);
 
+      Damage.monster2 = enemyMonster;
       monsterBattle(somePlayerNameList);
       
       boolean endMenu = false;

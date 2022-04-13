@@ -1,6 +1,6 @@
 public class Move {
     int id;
-    private static String moveType;
+    String moveType;
     String name;
     ElementType elementType;
     Integer accuracy;
@@ -10,7 +10,7 @@ public class Move {
     private static String effect;
 
     // constructor
-    public Move(int id, String name, ElementType elementType, Integer accuracy, Integer priority, Integer ammunition){
+    public Move(int id, String moveType, String name, ElementType elementType, Integer accuracy, Integer priority, Integer ammunition){
         this.id = id;
         this.name = name;
         this.elementType = elementType;
@@ -23,7 +23,7 @@ public class Move {
     public int getId(){
         return this.id;
     }
-    public static String moveType(){
+    public String getMoveType(){
         return moveType;
     }
     public String getName(){
