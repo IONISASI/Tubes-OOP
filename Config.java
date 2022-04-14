@@ -159,8 +159,8 @@ public class Config{
             String[] valsElTypes = ElTypes.split(",");
             List<ElementType> elementTypes = new ArrayList<ElementType>();
             for (String elty : valsElTypes){
-                 ElementType et = ElementType.valueOf(elty);
-                elementTypes.add(et);
+              ElementType et = ElementType.valueOf(elty);
+              elementTypes.add(et);
             }
             String bs = vals[3];
             String[] valsbs = bs.split(",");

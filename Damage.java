@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Damage implements Statcon{
-    private static Monster monster1;
+    static Monster monster1;
     static Monster monster2;
     private static Player player1;
     private static Player player2;
@@ -79,6 +79,7 @@ public class Damage implements Statcon{
         }else{//default move
             DefaultMove m = new DefaultMove();
             d = Math.floor((m.getBasePower()*(monster1.getAtt()/monster2.getDef())+2) * a * eff * b);
+            monster1.setHP(Math.floor(1/4*monster1.getHP()));
         }
         monster2.setHP(monster2.getHP()-d);
         /*if(Move.effect().contains("BURN") && Move.moveType().contains("NORMAL") && Move.target().contains("ENEMY")){

@@ -12,6 +12,7 @@ public class Move {
     // constructor
     public Move(int id, String moveType, String name, ElementType elementType, Integer accuracy, Integer priority, Integer ammunition){
         this.id = id;
+        this.moveType = moveType;
         this.name = name;
         this.elementType = elementType;
         this.accuracy = accuracy;
