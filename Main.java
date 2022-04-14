@@ -49,9 +49,13 @@ public class Main{
             System.out.println("Memulai shuffle monster untuk player...");
             List<Monster> randomMonsterList = Config.monsterList;
             for (int i=0; i<6;i++){
-                playerNameList.get(0).addMonster(randomMonsterList.get(0));
-                playerNameList.get(1).addMonster(randomMonsterList.get(1));
-                Collections.shuffle(randomMonsterList);
+              Monster rm1 = randomMonsterList.get(0);
+              Monster rm2 = randomMonsterList.get(1);
+              Monster m1 = new Monster(rm1.getId(), rm1.getNama(), rm1.getElementTypesList(), rm1.getHP(), rm1.getAtt(), rm1.getDef(), rm1.getspatt(), rm1.getspdef(), rm1.getspeed(), rm1.getMovesList());
+              Monster m2 = new Monster(rm2.getId(), rm2.getNama(), rm2.getElementTypesList(), rm2.getHP(), rm2.getAtt(), rm2.getDef(), rm2.getspatt(), rm2.getspdef(), rm2.getspeed(), rm2.getMovesList());
+              playerNameList.get(0).addMonster(m1);
+              playerNameList.get(1).addMonster(m2);
+              Collections.shuffle(randomMonsterList);
             }
 
             System.out.println();
@@ -196,7 +200,14 @@ public class Main{
         Scanner sc = new Scanner(System.in);
         int input = sc.nextInt();
         Damage.calculateDamage(currentMonsterMovesList.get(input-1), somePlayerNameList);
+        Damage.aftercalculateDamage(currentMonsterMovesList.get(input-1), somePlayerNameList);
+        Damage.afterEffect();
+        if(enemyMonster.getHP() <= 0){
+          monsterList.remove(enemyMonster);
+        }
         changeTurn(somePlayerNameList);
+        
+        
         sc.close();
       }
     }    

@@ -82,6 +82,9 @@ public class Damage implements Statcon{
             monster1.setHP(Math.floor(1/4*monster1.getHP()));
         }
         monster2.setHP(monster2.getHP()-d);
+        
+        
+        
         /*if(Move.effect().contains("BURN") && Move.moveType().contains("NORMAL") && Move.target().contains("ENEMY")){
             d = (java.lang.Math.floor((Move.getBasePower()*(monster1.getAtt()/monster2.getDef())+2)* a * Effectivity.getEffectivity() * 0.5));
         }
@@ -108,16 +111,16 @@ public class Damage implements Statcon{
         }*/
         
     }
-    public void aftercalculateDamage(Move move, List<Player> somePlayerNameList){
+    public static void aftercalculateDamage(Move move, List<Player> somePlayerNameList){
         double d = 0;
         double burn = 1/8;
         double poison = 1/16;
         if(monster2.getStatuscon().equals("BURN")){
             //burn(monster2); ini kena burn hrs nya tiap dia dapet giliran main kan?
-            double maxhp = monster2.getHP();
+            double maxhp = monster2.getMaxHP();
             d = Math.floor(maxhp*burn);
         }else if(monster2.getStatuscon().equals("POISON")){
-            double maxhp = monster2.getHP();
+            double maxhp = monster2.getMaxHP();
             d = Math.floor(maxhp*poison);
         }
         monster2.setHP(monster2.getHP()-d);
@@ -136,12 +139,16 @@ public class Damage implements Statcon{
         
     }
   
-    // public static void aftereffect(){
-    //     if (monster1.getHP()<=0){
-    //         player1.switchMonster();
-    //     }
-    //     else if (monster2.getHP()<=0){
-    //         player2.switchMonster();
-    //     }
-    // }
+    public static void afterEffect(){
+        System.out.println("");
+        System.out.println("| " + monster2.getNama() + " terkena damage!!! |");
+        System.out.println("");
+        if(monster2.getHP() < 0){
+            System.out.println("HP " + monster2.getNama() + " : " + "0/" + monster2.getMaxHP());
+            System.out.println(monster2.getNama() + " telah dikalahkan..");
+            monster2.setStatuscon("DEAD");
+        }else{
+            System.out.println(" HP " + monster2.getNama() + " : " + monster2.getHP() + "/" + monster2.getMaxHP());
+        }
+    }
 }
