@@ -36,22 +36,31 @@ public class Stats{
         d = (Double) java.lang.Math.floor(someDef);
         return d;
     }
+    public void setDef(double def){
+        this.someDef = def;
+    }
     public double getspatt(){
         double d;
         d = (Double) java.lang.Math.floor(someSpatt);
         return d;
+    }
+    public void setspatt(double spatt){
+        this.someSpatt = spatt;
     }
     public double getspdef(){
         double d;
         d = (Double) java.lang.Math.floor(someSpdef);
         return d;
     }
+    public void setspdef(double spdef){
+        this.someSpdef = spdef;
+    }
     public double getspeed(){
         double d;
         d = (Double) java.lang.Math.floor(someSpeed);
         return d;
     }
-    public void setSpeed(double speed){
+    public void setspeed(double speed){
         this.someSpeed = speed;
     }
     public void cetak(){

@@ -8,6 +8,7 @@ public class Monster extends Stats {
     private List<Move> movesList = new ArrayList<Move>();
     private String statusCon;
     private double maxHP;
+    private int skipTurn = 0;
 
     //constructor
     public Monster(int id, String nama, List<ElementType> elementTypesList, Stats someBaseStats, List<Move> movesList) {
@@ -62,7 +63,27 @@ public class Monster extends Stats {
         this.statusCon = sc;
     }
 
+    public int getSkipTurn(){
+        return this.skipTurn;
+    }
+
+    public void setSkipTurn(int st){
+        this.skipTurn = st;
+    }
+
     public Double getMaxHP(){
         return this.maxHP;
+    }
+
+    public void applyEffect(Stats stat) {
+      this.setHP(this.getHP() + stat.getHP());
+      if (this.getHP() > this.getMaxHP()) {
+        this.setHP(this.getMaxHP());
+      }
+      this.setAtt(this.getAtt() + stat.getAtt());
+      this.setDef(this.getDef() + stat.getDef());
+      this.setspatt(this.getspatt() + stat.getspatt());
+      this.setspdef(this.getspdef() + stat.getspdef());
+      this.setspeed(this.getspeed() + stat.getspeed());
     }
 }

@@ -30,7 +30,7 @@ public class Battle extends Player implements Statcon{
     }
     public void paralyze(Monster m, List<Player> somePlayerNameList){
         double speed = m.getspeed()*1/2;
-        m.setSpeed(speed);
+        m.setspeed(speed);
         int y = new Random().nextInt(4);
         if(y==2){
             Main.skipturn(true, somePlayerNameList);
