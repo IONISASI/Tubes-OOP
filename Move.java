@@ -6,7 +6,7 @@ public class Move {
     Integer accuracy;
     Integer priority;
     Integer ammunition;
-    private static String target;
+    String target;
     private static String effect;
 
     // constructor
@@ -42,9 +42,10 @@ public class Move {
     public Integer getAmmunition(){
         return this.ammunition;
     }
-    public static String target(){
-        return target;
+    public String getTarget(){
+        return this.target;
     }
+  
     public static String effect(){
         return effect;
     }

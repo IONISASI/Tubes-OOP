@@ -148,7 +148,7 @@ public class Main {
       System.out.println("(1) Move");
       System.out.println("(2) Switch");
       System.out.println("(3) Back to Menu");
-      System.out.println("(4) Skip Turn");
+      // System.out.println("(4) Skip Turn");
       System.out.printf("Pilihan: ");
       Scanner sc = new Scanner(System.in);
       int input = sc.nextInt();
@@ -165,11 +165,11 @@ public class Main {
           endMenu = true;
           appMenu(somePlayerNameList);
           break;
-        case 4:
-          endMenu = true;
-          skipturn(true, somePlayerNameList);
-          changeTurn(somePlayerNameList);
-          break;
+        // case 4:
+        //   endMenu = true;
+        // skipturn(true, somePlayerNameList);
+        //   changeTurn(somePlayerNameList);
+        //   break;
       }
       sc.close();
     }
@@ -281,7 +281,12 @@ public class Main {
       Main.main(new String[0]);
     } else {
       Damage.aftercalculateDamage();
-      Collections.reverse(somePlayerNameList);
+      if (enemyMonsterList.get(0).getSkipTurn() != 0) {
+        enemyMonsterList.get(0).setSkipTurn(enemyMonsterList.get(0).getSkipTurn()-1);
+        // System.out.println(enemyMonsterList.get(0).getSkipTurn());
+      } else {
+        Collections.reverse(somePlayerNameList);
+      }
       battleMenu(somePlayerNameList);
     }
   }
@@ -296,6 +301,8 @@ public class Main {
     System.out.println("--------------------------------");
     if (currentMonster.getStatuscon().equals("NULL")) {
       System.out.println(currentPlayer.getPlayerName() + ": " + currentMonster.getNama());
+    } else if (currentMonster.getStatuscon().equals("SLEEP")) {
+      System.out.println(currentPlayer.getPlayerName() + ": " + currentMonster.getNama() + " (" + currentMonster.getStatuscon() + " " + currentMonster.getSkipTurn() + ")");
     } else {
       System.out.println(currentPlayer.getPlayerName() + ": " + currentMonster.getNama() + " (" + currentMonster.getStatuscon() + ")");
     }
@@ -303,7 +310,9 @@ public class Main {
     System.out.println("--------------------------------");
     if (enemyMonster.getStatuscon().equals("NULL")) {
       System.out.println(enemyPlayer.getPlayerName() + ": " + enemyMonster.getNama());
-    } else {
+    } else if (enemyMonster.getStatuscon().equals("SLEEP")) {
+      System.out.println(enemyPlayer.getPlayerName() + ": " + enemyMonster.getNama() + " (" + enemyMonster.getStatuscon() + " " + enemyMonster.getSkipTurn() + ")");
+    }  else {
       System.out.println(enemyPlayer.getPlayerName() + ": " + enemyMonster.getNama() + " (" + enemyMonster.getStatuscon() + ")");
     }
     System.out.println("HP: " + enemyMonster.getHP() + " / " + enemyMonster.getMaxHP());
@@ -345,7 +354,7 @@ public class Main {
         System.out.println(currentPlayer.getPlayerName() + "'s Monster");
         System.out.println("-----------------------------------------------");
       }
-      System.out.println("No. " + String.valueOf(cur++) + ": " + curMon.getNama());
+      System.out.println("No. " + String.valueOf(cur++) + ": " + curMon.getNama() + " (" + curMon.getStatuscon() + ")");
       System.out.printf("HP: " + curMon.getHP());
       System.out.printf(", Att: " + curMon.getAtt());
       System.out.printf(", Def: " + curMon.getDef());
@@ -363,7 +372,7 @@ public class Main {
         System.out.println(enemyPlayer.getPlayerName() + "'s Monster");
         System.out.println("-----------------------------------------------");
       }
-      System.out.println("No. " + String.valueOf(ene++) + ": " + eneMon.getNama());
+      System.out.println("No. " + String.valueOf(ene++) + ": " + eneMon.getNama() + " (" + eneMon.getStatuscon() + ")");
       System.out.printf("HP: " + eneMon.getHP());
       System.out.printf(", Att: " + eneMon.getAtt());
       System.out.printf(", Def: " + eneMon.getDef());

@@ -30,27 +30,23 @@ public class Damage {
         if (monster2.getStatuscon().equals("SLEEP")){
         int x = (int) (Math.random() * 7) + 1;
         System.out.println();
-        System.out.println("| " + m.getNama() + " terkena sleep selama " + x + " putaran !!! |");
-        while(monster2.getStatuscon().equals("SLEEP")){
-            Main.skipturn(true, somePlayerNameList);
-        }
+        System.out.println("| " + monster2.getStatuscon() + " | " + monster2.getNama() + " terkena sleep sejumlah " + String.valueOf(x) + " putaran");
+        monster2.setSkipTurn(x+1);
     }
     }
   
 
-    public static void paralyzes (Monster m, List<Player> somePlayerNameList){
-        if (monster2.getStatuscon().equals("PARALYZE")){
-        double speed = m.getspeed()*1/2;
-        m.setSpeed(speed);
-        int y = new Random().nextInt(4);
-        if(y==2){
+    public static void paralyzes (){
+      if (monster2.getStatuscon().equals("PARALYZE")){
+          double speed = monster2.getspeed()*1/2;
+          monster2.setspeed(speed);
+          int y = new Random().nextInt(4);
+          if (y==2){
             System.out.println();
-            System.out.println("| " + m.getNama() + " terkena skip sebanyak 1 putaran !!! |");
-            Main.skipturn(true, somePlayerNameList);
-        }
-        System.out.println();
-        System.out.println("| " + m.getNama() + " terkena paralyze !!! |");
-    }
+            System.out.println("| " + monster2.getStatuscon() + " | " + monster2.getNama() + " tidak bisa bergerak sebanyak 1 turn");
+            monster2.setSkipTurn(1);
+          }
+      }
     }
 
     public static void calculateDamage (Move move, List<Player> somePlayerNameList){
@@ -96,7 +92,18 @@ public class Damage {
                 monster2.setStatuscon("PARALYZE");
                 System.out.println();
                 System.out.println("| " + monster2.getStatuscon() + " | " + monster2.getNama() + " terkena status " + monster2.getStatuscon());
-                paralyzes(monster2, somePlayerNameList);
+                paralyzes();
+            }else if(m.getStatcon().equals("-")){
+                if (m.getTarget().equals("OWN")) {
+                  System.out.println();
+                  System.out.println("| STATS | " + monster1.getNama() + " menerima efek " + m.getName());
+                  monster1.applyEffect(m.getStats());
+                } else if (m.getTarget().equals("ENEMY")) {  
+                  System.out.println();
+                  System.out.println("| STATS | " + monster2.getNama() + " menerima efek " + m.getName());
+                  monster2.applyEffect(m.getStats());
+                }
+                paralyzes();
             }
         } else if (move.getMoveType().equals("DEFAULT")) {//default move
             DefaultMove m = DefaultMove.getInstance();
