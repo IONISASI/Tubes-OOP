@@ -206,9 +206,8 @@ public class Main{
           monsterList.remove(enemyMonster);
         }
         changeTurn(somePlayerNameList);
-        
-        
         sc.close();
+        Battle.gameover(somePlayerNameList);
       }
     }    
 

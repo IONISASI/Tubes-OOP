@@ -1,14 +1,43 @@
 import java.util.*; 
 
-public class Battle extends Player{
+public class Battle extends Player implements Statcon{
     private static Player player1;
     private static Player player2;
     private static int turn;
     private static int nextturn;
+    List<Player> somePlayerNameList;
     public Battle(int playerId, String playerName, List<Monster> monsterList){
         super(playerId, playerName, monsterList);
     }
-    
+    public void burn(Monster m){
+        double HP = m.getMaxHP()*1/8;
+        double att = m.getAtt()*1/2;
+        m.setHP(HP);
+        m.setAtt(att);
+        System.out.println("| " + m.getNama() + " terkena burn!!! |");
+    }
+    public void poison(Monster m){
+        double HP = 1/16*m.getMaxHP();
+        m.setHP(HP);
+        System.out.println("| " + m.getNama() + " terkena poison!!! |");
+    }
+    public void sleep(Monster m, List<Player> somePlayerNameList){
+        int x = (int) (Math.random() * 7) + 1;
+        for(int i=0; i<=x; i++){
+            Main.skipturn(true, somePlayerNameList);
+        }
+        System.out.println("| " + m.getNama() + " terkena sleep selama " + x + "putaran !!! |");
+    }
+    public void paralyze(Monster m, List<Player> somePlayerNameList){
+        double speed = m.getspeed()*1/2;
+        m.setSpeed(speed);
+        int y = new Random().nextInt(4);
+        if(y==2){
+            Main.skipturn(true, somePlayerNameList);
+            System.out.println("| " + m.getNama() + " terkena skip sebanyak 1 putaran !!! |");
+        }
+        System.out.println("| " + m.getNama() + " terkena paralyze !!! |");
+    }
     public static void turn(){
         turn = new Random().nextInt(2);
         if(turn==0){
@@ -59,7 +88,7 @@ public class Battle extends Player{
     // public static void moveMonster() {
     // }
   
-    public static void gameover(){
+    public static void gameover(List<Player> somePlayerNameList){
         if(player1.getMonsterList().isEmpty()){
             System.out.println("Game telah berakhir, pemenangnya adalah "+ player1.getPlayerName());
             Main.main(new String[0]);

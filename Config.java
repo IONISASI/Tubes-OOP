@@ -90,7 +90,7 @@ public class Config{
     // harusnya mirip2 ky gini untuk config lainnya. yg mo nyoba bikin sabi
     public Config() throws IOException{
         //config moves
-        File fileMove = new File("src\\move.txt");
+        File fileMove = new File("move.txt");
         Scanner scanMove = new Scanner(fileMove);
 
         while(scanMove.hasNextLine()){
@@ -147,7 +147,7 @@ public class Config{
 
         scanMove.close();
         // config Monster
-        File fileMonster = new File("src\\monster.txt");
+        File fileMonster = new File("monster.txt");
         Scanner scanMonster = new Scanner(fileMonster);
 
         while(scanMonster.hasNextLine()){
@@ -190,7 +190,7 @@ public class Config{
         scanMonster.close();
 
         //config effectivity
-        File fileEffectivity = new File("src\\effectivity.txt");
+        File fileEffectivity = new File("effectivity.txt");
         Scanner scanEff = new Scanner(fileEffectivity);
 
         while(scanEff.hasNextLine()){

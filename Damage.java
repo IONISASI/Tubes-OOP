@@ -1,45 +1,56 @@
 import java.util.*;
 
-public class Damage implements Statcon{
+public class Damage {
     static Monster monster1;
     static Monster monster2;
-    private static Player player1;
-    private static Player player2;
     // public Damage(int id, String nama, List<ElementType> elementTypesList, Stats baseStats, List<Move> movesList, double HP){
     //     super(id, nama, elementTypesList, baseStats, movesList, HP);
     // }
     
-    public void burn(Monster m){
+    
+    public static void burns(Monster m){
         double HP = m.getHP()*1/8;
         double att = m.getAtt()*1/2;
         m.setHP(HP);
         m.setAtt(att);
+        System.out.println("| " + m.getNama() + " terkena burn!!! |");
     }
   
-    public void poison(Monster m){
+    
+    public static void poisons(Monster m){
         double HP = 1/16*m.getHP();
         m.setHP(HP);
+        System.out.println("| " + m.getNama() + " terkena poison!!! |");
     }
   
-    public void sleep(){
+    
+    public static void sleeps(Monster m, List<Player> somePlayerNameList){
         int x = (int) (Math.random() * 7) + 1;
-        Battle.skipturn(x);
+        System.out.println("| " + m.getNama() + " terkena sleep selama " + x + " putaran !!! |");
+        for(int i=0; i<x; i++){
+            Main.skipturn(true, somePlayerNameList);
+            Main.changeTurn(somePlayerNameList);
+        }
     }
   
-    public void paralyze(Monster m){
+
+    public static void paralyzes(Monster m, List<Player> somePlayerNameList){
         double speed = m.getspeed()*1/2;
         m.setSpeed(speed);
         int y = new Random().nextInt(4);
         if(y==2){
-            Battle.skipturn(1);
+            System.out.println("| " + m.getNama() + " terkena skip sebanyak 1 putaran !!! |");
+            Main.skipturn(true, somePlayerNameList);
+            Main.changeTurn(somePlayerNameList);
         }
+        System.out.println("| " + m.getNama() + " terkena paralyze !!! |");
     }
 
     /*public double getEff(Monster monster1, Monster monster2){
         
     }*/
   
-    public static void calculateDamage(Move move, List<Player> player1){
+    public static void calculateDamage(Move move, List<Player> somePlayerNameList){
 
         double min = 0.85;  
         double max = 1;  
@@ -67,14 +78,16 @@ public class Damage implements Statcon{
             StatusMove m = Config.getStatusMove(move.getId());
             if(m.getStatcon().equals("BURN")){
                 monster2.setStatuscon("BURN");
+                burns(monster2);
             }else if(m.getStatcon().equals("POISON")){
                 monster2.setStatuscon("POISON");
+                poisons(monster2);
             }else if(m.getStatcon().equals("SLEEP")){
                 monster2.setStatuscon("SLEEP");
-                //sleep(); gatau gmn ini
+                sleeps(monster2, somePlayerNameList);
             }else if(m.getStatcon().equals("PARALYZE")){
                 monster2.setStatuscon("PARALYZE");
-                //paralyze(monster2); gatau gmn
+                paralyzes(monster2, somePlayerNameList);
             }
         }else{//default move
             DefaultMove m = new DefaultMove();
