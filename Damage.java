@@ -27,17 +27,19 @@ public class Damage {
   
     
     public static void sleeps (Monster m, List<Player> somePlayerNameList){
+        if (monster2.getStatuscon().equals("SLEEP")){
         int x = (int) (Math.random() * 7) + 1;
         System.out.println();
         System.out.println("| " + m.getNama() + " terkena sleep selama " + x + " putaran !!! |");
-        for(int i=0; i<x; i++){
+        while(monster2.getStatuscon().equals("SLEEP")){
             Main.skipturn(true, somePlayerNameList);
-            Main.changeTurn(somePlayerNameList);
         }
+    }
     }
   
 
     public static void paralyzes (Monster m, List<Player> somePlayerNameList){
+        if (monster2.getStatuscon().equals("PARALYZE")){
         double speed = m.getspeed()*1/2;
         m.setSpeed(speed);
         int y = new Random().nextInt(4);
@@ -45,10 +47,10 @@ public class Damage {
             System.out.println();
             System.out.println("| " + m.getNama() + " terkena skip sebanyak 1 putaran !!! |");
             Main.skipturn(true, somePlayerNameList);
-            Main.changeTurn(somePlayerNameList);
         }
         System.out.println();
         System.out.println("| " + m.getNama() + " terkena paralyze !!! |");
+    }
     }
 
     public static void calculateDamage (Move move, List<Player> somePlayerNameList){

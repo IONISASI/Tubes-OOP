@@ -132,12 +132,11 @@ public class Main {
     }
   }
 
-  public static void skipturn(boolean skipturn, List<Player> somePlayerNameList) {
-    if (skipturn) {
-      Collections.rotate(somePlayerNameList, 2);
+  public static void skipturn(boolean skipTurn, List<Player> somePlayerNameList) {
+      while (skipTurn) {
+        battleMenu(somePlayerNameList);
+      }
     }
-  }
-
   public static void battleMenu(List<Player> somePlayerNameList) {
     Player somePlayer = somePlayerNameList.get(0);
     monsterBattle(somePlayerNameList);
