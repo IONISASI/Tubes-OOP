@@ -5,11 +5,11 @@ public class Damage {
     static Monster monster2;
     
     public static void burns() {
-      if (monster2.getStatuscon().equals("BURN")) {
-        double d = monster2.getHP()*0.125;
+      if (monster1.getStatuscon().equals("BURN")) {
+        double d = monster1.getHP()*0.125;
         System.out.println();
-        System.out.println("| " + monster2.getStatuscon() + " | " + monster2.getNama() + " terkena damage sejumlah " + String.valueOf(d));
-        monster2.setHP(monster2.getHP()-d);
+        System.out.println("| " + monster1.getStatuscon() + " | " + monster1.getNama() + " terkena damage sejumlah " + String.valueOf(d));
+        monster2.setHP(monster1.getHP()-d);
         // double burnedAtt = monster2.getAtt()*0.5;
         // monster2.setAtt(burnedAtt);
       }
@@ -17,11 +17,11 @@ public class Damage {
   
     
     public static void poisons () {
-      if (monster2.getStatuscon().equals("POISON")) {
-        double d = monster2.getHP()*0.0625;
+      if (monster1.getStatuscon().equals("POISON")) {
+        double d = monster1.getHP()*0.0625;
         System.out.println();
-        System.out.println("| " + monster2.getStatuscon() + " | " + monster2.getNama() + " terkena damage sejumlah " + String.valueOf(d));
-        monster2.setHP(monster2.getHP()-d);
+        System.out.println("| " + monster1.getStatuscon() + " | " + monster1.getNama() + " terkena damage sejumlah " + String.valueOf(d));
+        monster1.setHP(monster1.getHP()-d);
       }
     }
   
