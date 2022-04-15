@@ -1,14 +1,24 @@
-public class DefaultMove extends Move{
+public class DefaultMove extends Move {
+    private static DefaultMove singleInstance = null;
     private int basePower;
+  
     //constructor
     public DefaultMove(){
-        super(0, "DEFAULT", "DEFAULT", ElementType.valueOf("NORMAL"), 100, 0, Integer.MAX_VALUE);
+        super(0, "DEFAULT", "Default Move", ElementType.valueOf("NORMAL"), 100, 0, Integer.MAX_VALUE);
         this.basePower = 50;
     }
 
     //getter
     public int getBasePower(){
         return this.basePower;
+    }
+
+    public static DefaultMove getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new DefaultMove();
+        }
+ 
+        return singleInstance;
     }
 
     // ntar klo suatu monster pake move ini 

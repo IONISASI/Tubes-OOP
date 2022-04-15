@@ -84,18 +84,4 @@ public class Battle extends Player implements Statcon{
         System.out.println("(1) Move");
         System.out.println("(2) Switch");
     }
-      
-    // public static void moveMonster() {
-    // }
-  
-    public static void gameover(List<Player> somePlayerNameList){
-        if(player1.getMonsterList().isEmpty()){
-            System.out.println("Game telah berakhir, pemenangnya adalah "+ player1.getPlayerName());
-            Main.main(new String[0]);
-        }
-        else{
-            System.out.println("Game telah berakhir, pemenangnya adalah "+ player2.getPlayerName());
-            Main.main(new String[0]);
-        }
-    }
 }
